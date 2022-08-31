@@ -1,10 +1,12 @@
- h2:hover{
-    text-decoration:underline;
-    cursor: pointer;
- }
-
- h3{
+ .flex-container {
+    
+    justify-content: space-around;
     text-align: center;
+    
+}
+
+ h3:hover{
+    cursor: pointer;
  }
 
  .textarea{
@@ -42,4 +44,5 @@ color: white;
 margin: 8px 6px;
 border-radius: 6px;
 }
+
 
