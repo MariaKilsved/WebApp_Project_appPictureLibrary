@@ -42,25 +42,19 @@
 
         <!--<script type="module" src="./script/appPictureLibrary.js"></script>-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
-       
-       
-          <br><!--need to fix this to grid or something-->
-          <br><!--need to fix this to grid or something-->
-          <!-- Page content -->
         
-        <h3>Upload picture</h3>
-        <br><!--need to fix this to grid or something-->
-        <br><!--need to fix this to grid or something-->
+        
+        <div class="flex-container">
+                
+        
+          <h3>Upload picture</h3>
 
-        <div class="textarea">
+          
          <textarea cols="100"  placeholder="Title"></textarea>
-        </div>
+        
         <form action="/action_page.php">
           <input type="file" id="myFile" name="filename">
-          <input type="reset">
-          <br><!--need to fix this to grid or something-->
-          <br><!--need to fix this to grid or something-->
-          <br><!--need to fix this to grid or something-->
+          <input type="reset" value="Cancel">
         
         <h3>Already added</h3>
         <div class="row">
@@ -74,13 +68,11 @@
             <img src="app-data/library/pictures/album-header/GSFC_20171208_Archive_e000383~small.jpg" alt = "Nebulas" width="400" height="200" style="width:100%">
           </div>
         </div>
-        <br><!--need to fix this to grid or something-->
-        <br><!--need to fix this to grid or something-->
-        <input type="submit" id="submitbutton">
-        <input type="reset" id="resetbutton">
+        <input type="submit" id="submitbutton" value="Submit">
+        <input type="reset" id="resetbutton" value="Cancel">
       </div>
     </form>
- 
+        </div>
     </body>
   
 </html>
