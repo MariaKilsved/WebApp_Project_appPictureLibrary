@@ -1,16 +1,22 @@
 'use strict';  // Try without strict mode
 
-const a = document.querySelectorAll('input');
+let saveFile=[];
+const addImage=(ev)=>{
+  ev.preventDefault();
+  let imageTF = {
+    id: Date.now(),
+    title: document.getElementById('title').value,
+    filename: document.getElementById('myFile').value /*ändrade denna från titel till myFile*/ 
+  }
+  saveFile.push(imageTF);
+ /* document.forms[0].reset();*/
+  /*document.querySelector('form').reset();*/
+  console.warn('added', {saveFile});
+  let pre = document.querySelector('#msg pre');
+  pre.textContent= '\n' + JSON.stringify(saveFile, '\t',2);
 
-// store field values
-function processField() {
-  localStorage.setItem(window.location.href, 'true');
-  localStorage.setItem(this.id, this.value);
+  localStorage.setItem('MyImageList',JSON.stringify(saveFile) );
 }
-
-const save= document.getElementById('input');
-
-function Savepicture(image) {
-    console.log("clickkk");
-    console.log(image);
-}
+document.addEventListener('DOMContentLoaded', ()=>{
+  document.getElementById('btn').addEventListener('added', addImage);
+});
