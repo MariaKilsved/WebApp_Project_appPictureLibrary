@@ -1,0 +1,24 @@
+.imageGallery {
+    gap: 10px;
+}
+
+@media only screen and (min-width: 768px) {
+    .image-gallery {
+      flex-direction: row;
+    }
+}
+
+.imageGallery .column {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.card, .card-img, .card-img-top {
+    border-radius: 0;
+}
+
+.card {
+    cursor: pointer;
+    width: 18rem;
+}
