@@ -6,8 +6,8 @@ const addImage=(ev)=>{
   let imageTF = {
     id: Date.now(),
     title: document.getElementById('title').value,
-    filename: document.getElementById('myFile').value /*ändrade denna från titel till myFile*/ 
-  }
+    filename: document.getElementById('myFile').value 
+  } 
   saveFile.push(imageTF);
  /* document.forms[0].reset();*/
   /*document.querySelector('form').reset();*/
@@ -20,3 +20,8 @@ const addImage=(ev)=>{
 document.addEventListener('DOMContentLoaded', ()=>{
   document.getElementById('btn').addEventListener('added', addImage);
 });
+
+addImage.innerHTML = "Image" + title.value + myFile.value;
+
+
+
