@@ -40,25 +40,99 @@
             </div>
           </nav>
 
-        <script type="module" src="./script/appPictureLibrary.js"></script>
+        <script type="module" src="./script/upload_image.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
         
-       <!--script src=".\appPictureLibrary.js"></script>-->
+     
 
         <div class="flex-container">
                 
        
         <h3>Upload picture</h3>
+       <!--<form>
+      <div class="formBox">
+        <label for="title">Movie</label>
+        <input type="text" id="title" placeholder="Title"/>
 
-        <textarea cols="100"  placeholder="Title"></textarea>
-        <form action=".appPictureLibrary.js">
+      </div>
+
+        <div class="formBox">
+          <button id="btn">Click to Add</button>
+        </div>
+      </form>-->
+      
+      <form>
+        <div class="formBox">
+      
+      <input type="text" cols="300" id="title" placeholder="Title"/>
+        <!--<textarea cols="100"  placeholder="Title"></textarea> -->
+      </div>
+        <div class="formBox">
           <input type="file" id="myFile" name="filename">
-          <input type="reset" value="Cancel">        
+        </div>
         
-        <h3>Already added</h3>
+       
+
+        <div class="formBox">
+          <button id="btn">Submit</button>
+          <button id="reset">Cancel</button>
+        </div>
+      </form>
+          <script>
+            let saveFile=[];
+            const addImage=(ev)=>{
+              ev.preventDefault();
+              let imageTitle = {
+                title: document.getElementById('title').value,
+                myFile: document.getElementById('title').value
+              }
+              saveFile.push(imageTitle);
+              document.forms[0].reset();
+              console.warn('added', {saveFile});
+              let pre = document.querySelector('#msg pre');
+              pre.textContent= '\n' + JSON.stringify(saveFile, '\t',2);
+
+              localStorage.setItem('MyImageList',JSON.stringify(saveFile) );
+            }
+            document.addEventListener('DOMContentLoaded', ()=>{
+              document.getElementById('btn').addEventListener('click', addImage);
+            });
+          </script>
+          
+          <!--<script>
+            function submitbutton(){
+              var filename= document.getElementById("myFile").value;
+            }
+            
+          document.write( + filename);
+          </script> -->
+          <!--<script>
+            let movies=[];
+            const addMovie=(ev)=>{
+              ev.preventDefault();
+              let movie = {
+                title: document.getElementById('title').value
+              }
+              movies.push(movie);
+              document.forms[0].reset();
+              console.warn('added', {movies});
+              let pre = document.querySelector('#msg pre');
+              pre.textContent= '\n' + JSON.stringify(movies, '\t',2);
+
+              localStorage.setItem('MyMovieList',JSON.stringify(movies) );
+            }
+            document.addEventListener('DOMContentLoaded', ()=>{
+              document.getElementById('btn').addEventListener('click', addMovie);
+            });
+          </script>-->
+              
+        </div>
+        <div class="flex-container2">
+          
+          <h3>Already added</h3>
       
      
-        <div class="row">
+       <!-- <div class="row">
           <div class="column">
             <img src="app-data/library/pictures/album-header/A Galactic Spectacle_4862916839_o~small.jpg" alt ="galaxies" width="400" height="200" style="width:100%">
           </div>
@@ -67,12 +141,14 @@
           </div>
           <div class="column">
             <img src="app-data/library/pictures/album-header/GSFC_20171208_Archive_e000383~small.jpg" alt = "Nebulas" width="400" height="200" style="width:100%">
-          </div>
+          </div> -->
        
-        </div>
-      
+        
+      <footer class="text-center-xs space-center--xs">
         <input type="submit" id="submitbutton" value="Submit">
         <input type="reset" id="resetbutton" value="Cancel">
+      </footer>
+        
       </div>
  
     </form>
