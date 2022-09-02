@@ -8,12 +8,13 @@ const addImage=(ev)=>{
     title: document.getElementById('title').value,
     filename: document.getElementById('myFile').value 
   } 
+
   saveFile.push(imageTF);
  /* document.forms[0].reset();*/
   /*document.querySelector('form').reset();*/
   console.warn('added', {saveFile});
-  let pre = document.querySelector('#msg pre');
-  pre.textContent= '\n' + JSON.stringify(saveFile, '\t',2);
+  let answerImg = document.querySelector('#answerImg');
+  answerImg.textContent= '\n' + JSON.stringify(saveFile, '\t',2);
 
   localStorage.setItem('MyImageList',JSON.stringify(saveFile) );
 }
@@ -21,8 +22,10 @@ document.addEventListener('DOMContentLoaded', ()=>{
   document.getElementById('btn').addEventListener('added', addImage);
 });
 
-myImage = document.querySelector("#upload").JSON.parse(localStorage.getItem("MyImageList")) || []
+/*myImage = document.querySelector('#answerImg').JSON.parse(localStorage.getItem('MyImageList'));*/
 
+ 
+console.log(JSON.stringify(saveFile));
 
 
 

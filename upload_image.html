@@ -55,8 +55,9 @@
        
       </div>
         <div class="formBox">
-          <label for="myFile">
-          <input type="file" id="myFile" name="filename" class="colorChange"></label>
+          <label for="myFile">filnamn</label> <!--Behöver ta bort label från sida-->
+          <input type="file" id="myFile" name="filename" class="colorChange">
+       
           <button type="submit" id="btn">Submit</button>
         <button type="reset" id="btn2">Cancel</button>
         </div>
@@ -66,12 +67,21 @@
         <div class="flex-container2"><br><!--Behöver ta bort br-->
           
           <h3>Already added</h3><br><br><!--Behöver ta bort br-->
-        <img id="upload">
-      
+          
+          <form>
+          <div class="flexbox-image">
+          <label for="answerImg1" >Image1</label>
+          <input id="answerImg1" type="image" alt="First Photo" multiple onchange="myFile()" />
+          <label for="answerImg2" >Image2</label>
+          <input id="answerImg2" type="image" alt="Second Photo" multiple onchange="myFile()" />
+          <label for="answerImg3" >Image3</label>
+          <input id="answerImg3" type="image" alt="Third Photo" multiple onchange="myFile()" />
+        </div>
         <div class="formBox">
           <button type="submit" id="btn3">Submit</button>
           <button type="reset" id="btn4">Cancel</button>
         </div>
+        </form>
       
       </div>
  
