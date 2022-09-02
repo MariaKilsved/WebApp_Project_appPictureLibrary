@@ -21,7 +21,14 @@ document.addEventListener('DOMContentLoaded', ()=>{
   document.getElementById('btn').addEventListener('added', addImage);
 });
 
-addImage.innerHTML = "Image" + title.value + myFile.value;
+myImage = document.querySelector("#upload").JSON.parse(localStorage.getItem("MyImageList")) || []
+
+
+
+
+
+
+/*addImage.innerHTML = "Image" + title.value + myFile.value;*/
 
 
 
