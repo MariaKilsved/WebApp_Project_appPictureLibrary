@@ -1,17 +1,12 @@
 .imageGallery {
-    gap: 10px;
-}
-
-@media only screen and (min-width: 768px) {
-    .image-gallery {
-      flex-direction: row;
-    }
+    gap: 20px;
 }
 
 .imageGallery .column {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    flex-wrap: nowrap;
+    gap: 20px;
 }
 
 .card, .card-img, .card-img-top {
@@ -20,5 +15,52 @@
 
 .card {
     cursor: pointer;
-    width: 18rem;
+    width: 100%;
+}
+
+.two-columns, .three-columns, .four-columns {
+    display: none;
+}
+
+@media (min-width: 610px) {
+    .one-column {
+        display: none;
+    }
+    .two-columns {
+        display: flex;
+    }
+}
+
+@media (min-width: 910px) {
+    .two-columns {
+        display: none;
+    }
+    .three-columns {
+        display: flex;
+    }
+}
+
+@media (min-width: 1210px) {
+    .three-columns {
+        display: none;
+    }
+    .four-columns {
+        display: flex;
+    }
+}
+
+.one-column .column {
+    width: 100%;
+}
+
+.two-columns .column {
+    width: 50%;
+}
+
+.three-columns .column {
+    width: 33%;
+}
+
+.four-columns .column {
+    width: 25%;
 }
