@@ -1,34 +1,44 @@
 'use strict';  // Try without strict mode
 
-let saveFile=[];
-const addImage=(ev)=>{
-  ev.preventDefault();
-  let imageTF = {
-    id: Date.now(),
-    title: document.getElementById('title').value,
-    filename: document.getElementById('myFile').value 
-  } 
+const http = require("http");
+const server = http.createServer(function(req,res) {
+res.setHeader("Content-type", "application/json");
+res.setHeader("Access-Control-Allow-Origin", "*");
+res.writeHead(200); //status code HTTP 200 / OK
 
-  saveFile.push(imageTF);
- /* document.forms[0].reset();*/
-  /*document.querySelector('form').reset();*/
-  console.warn('added', {saveFile});
-  let answerImg = document.querySelector('#answerImg');
-  answerImg.textContent= '\n' + JSON.stringify(saveFile, '\t',2);
-
-  localStorage.setItem('MyImageList',JSON.stringify(saveFile) );
-}
-document.addEventListener('DOMContentLoaded', ()=>{
-  document.getElementById('btn').addEventListener('added', addImage);
+res.end(images1);
+});
+server.listen(1234, function(){
+  console.log("Listenig on port 1234");
 });
 
-/*myImage = document.querySelector('#answerImg').JSON.parse(localStorage.getItem('MyImageList'));*/
 
- 
-console.log(JSON.stringify(saveFile));
+let images1 = [];
+// example {id:1592304983049, title: 'Deadpool', year: 2015}
+const addImage = (ev)=>{
+    ev.preventDefault();  //to stop the form submitting
+    let file = {
+        id: Date.now(),
+        title: document.getElementById('title').value,
+        file: document.getElementById('myFile').value
+    }
+    images1.push(file);
+    document.forms[0].reset(); // to clear the form for the next entries
+    //document.querySelector('form').reset();
 
+    //for display purposes only
+    console.warn('added' , {images1} );
+    let pre = document.querySelector('#msg pre');
+    pre.textContent = '\n' + JSON.stringify(images1, '\t', 2);
 
+    //saving to localStorage
+    localStorage.setItem('MyImageList', JSON.stringify(images1) );
+}
+document.addEventListener('DOMContentLoaded', ()=>{
+    document.getElementById('btn').addEventListener('click', addImage);
 
+   
+});
 
 
 /*addImage.innerHTML = "Image" + title.value + myFile.value;*/
