@@ -1,18 +1,5 @@
 'use strict';  // Try without strict mode
 
-const http = require("http");
-const server = http.createServer(function(req,res) {
-res.setHeader("Content-type", "application/json");
-res.setHeader("Access-Control-Allow-Origin", "*");
-res.writeHead(200); //status code HTTP 200 / OK
-
-res.end(images1);
-});
-server.listen(1234, function(){
-  console.log("Listenig on port 1234");
-});
-
-
 let images1 = [];
 // example {id:1592304983049, title: 'Deadpool', year: 2015}
 const addImage = (ev)=>{
@@ -40,6 +27,17 @@ document.addEventListener('DOMContentLoaded', ()=>{
    
 });
 
+const http = require("http");
+const server = http.createServer(function(req,res) {
+res.setHeader("Content-type", "application/json");
+res.setHeader("Access-Control-Allow-Origin", "*");
+res.writeHead(200); //status code HTTP 200 / OK
+
+res.end(images1);
+});
+server.listen(3000, function(){
+  console.log("Listenig on port 3000");
+});
 
 /*addImage.innerHTML = "Image" + title.value + myFile.value;*/
 
