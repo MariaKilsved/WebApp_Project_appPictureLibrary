@@ -14,9 +14,10 @@ div.gallery {
   }
   
   div.gallery img {
-    width: 100%;
-    height: auto;
+    width: 300px;
+    height: 300px;
     border-radius: 25px;
+    object-fit: cover;
     
   }
   
