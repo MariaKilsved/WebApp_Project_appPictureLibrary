@@ -5,8 +5,14 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
-        <link href="css/style.css" rel="stylesheet">
+        <link href="./css/upload_image.css" rel="stylesheet"/>
     </head>
+    <style>
+      .content {
+        max-width: 500px;
+        margin: auto;
+      }
+      </style>
     <body>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container-fluid">
@@ -25,13 +31,61 @@
                   <li class="nav-item">
                     <a class="nav-link" href="#">New album</a>
                   </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="./upload_image.html">Upload picture</a>
+                  </li>
                 </ul>
               </div>
             </div>
           </nav>
 
-        <!--<script type="module" src="./script/appPictureLibrary.js"></script>-->
+        <script type="module" src="./script/upload_image.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+        
+     
 
+        <div class="flex-container"><br><!--Behöver ta bort br-->
+                
+        <h3>Upload picture</h3><br><br><!--Behöver ta bort br-->     
+
+      <form>
+        <div class="formBox">
+          <label for="title">Title</label>
+          <input type="text" id="title" placeholder="Title" class="resizedTextbox"/>
+        </div>
+        <div class="formBox">
+          <label for="myFile">filnamn</label> <!--Behöver ta bort label från sida-->
+          <input type="file" id="myFile" name="filename" class="colorChange">
+          <button type="submit" id="btn">Submit</button>
+          <button type="reset" id="btn2">Cancel</button>
+      </div>
+        <div id="msg">
+            <pre></pre>
+        </div>
+    </form>
+        <div class="flex-container2"><br><!--Behöver ta bort br-->
+          
+          <h3>Already added</h3><br><br><!--Behöver ta bort br-->
+          
+          <form>
+          <div class="flexbox-image">
+          <label for="answerImg1" >Image1</label>
+          <input id="answerImg1" type="image" alt="First Photo" multiple onchange="myFile()" />
+          <label for="answerImg2" >Image2</label>
+          <input id="answerImg2" type="image" alt="Second Photo" multiple onchange="myFile()" />
+          <label for="answerImg3" >Image3</label>
+          <input id="answerImg3" type="image" alt="Third Photo" multiple onchange="myFile()" />
+        </div>
+        <div class="formBox">
+          <button type="submit" id="btn3">Submit</button>
+          <button type="reset" id="btn4">Cancel</button>
+        </div>
+        </form>
+      
+      </div>
+ 
+    </form>
+        </div>
     </body>
+  
 </html>
