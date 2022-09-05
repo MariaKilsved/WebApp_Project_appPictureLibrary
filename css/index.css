@@ -8,21 +8,22 @@ div.gallery {
     display: inline-block;
     justify-content: space-between;
   }
-  
+
   div.gallery:hover img{
     border: 2px solid black;
   }
-  
+
   div.gallery img {
     width: 300px;
     height: 300px;
     border-radius: 25px;
-    object-fit: cover;
-    
+    object-fit: cover; 
   }
-  
+
   div.desc {
     padding: 5px;
     text-align: center;
-    font-size: 25px;
+    font-size: 30px;
+    color: white;
+    
   }
