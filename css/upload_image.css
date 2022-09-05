@@ -1,45 +1,58 @@
- h2:hover{
-    text-decoration:underline;
+
+label{
+    background-color: white;
+    color: white;
+}
+.myFile{
+    background-color: black;
+    color: white;
+    margin: 8px 6px;
+border-radius: 6px;
+}
+
+.flex-container {
+    
+    justify-content: space-around;
+    text-align: center;
+    
+}
+
+.flex-container2{
+    justify-content: space-around;
+    text-align: center;
+     
+}
+
+ h3:hover{
     cursor: pointer;
  }
 
- h3{
-    text-align: center;
- }
-
- .textarea{
-    padding: 0px;
-    text-align: start;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 8px 6px;
-    
- }
- textarea {
-    border-radius: 6px;
-}
-
-.row {
-    display:flex;
-  }
-  
-  .column {
-    flex: 33.33%;
-    padding: 30px;
-   
-  }
-/*If you like gray picture-- filter: grayscale(95%);*/
-  img {
-   
-    border: 5px solid rgba(85, 85, 85, 0.731);
-    
-}
-
-input {
+button{
 background-color: black;
 color: white;
 margin: 8px 6px;
 border-radius: 6px;
+}
+   
+
+
+input {
+background-color: white;
+color: black;
+margin: 8px 6px;
+border-radius: 6px;
+
+}
+
+.resizedTextbox {
+width: 600px; height: 40px
+}
+
+.colorChange {
+background-color: black;
+color: white;
+margin: 8px 6px;
+border-radius: 6px;
+
 }
 
