@@ -1,0 +1,28 @@
+section {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+input.text {
+    width: 30vw;
+    border-radius: 5px;
+}
+
+input.submit {
+    border-radius: 5px;
+}
+
+input.cancel {
+    border-radius: 5px;
+}
+
+p.newalbum {
+    color: white;
+    text-align: center;
+    font-size: xx-large;
+    margin-bottom: 50px;
+}

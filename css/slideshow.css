@@ -1,0 +1,18 @@
+.carousel, .carousel-inner {
+    max-height: calc(100vh - 12.875rem);
+    width: auto;
+}
+
+.stars {
+    width: 300px;
+}
+
+.star {
+    fill: #d9d9d9;
+    width: 50px;
+    cursor: pointer;
+}
+
+.star-full {
+    fill: #000;
+}
