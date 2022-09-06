@@ -29,23 +29,20 @@
     height: auto;
 }
 
-/* .comment-box { */
-/*     margin-top: 50px; */
-/*     margin-bottom: 50px; */
-/*     width: 90%; */
-/*     height: auto; */
-/* } */
+
 .comment-section {
-    margin-top: 300px;
-    width: 650px;
-    height: 300px;
-    display: flex;
-    align-items: center;
+    margin-top: 60rem;
     background-color: darkgray;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    width: 500px;
+    height: auto;
 }
 
 .comment-box {
-    margin-top: 750px;
+    margin-top: 50%;
     top: 50%;
     left: 50%;
     position: absolute;
