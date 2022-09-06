@@ -15,12 +15,12 @@ library = await lib.pictureLibraryBrowser.fetchJSON(libraryJSON);  //reading lib
 //library = lib.pictureLibraryBrowser.createFromTemplate();  //generating a library template instead of reading JSON
 
 //Obtain album from URL:
-//let albumQuery = window.location.search.substring(1);
+let albumQuery = window.location.search.substring(1);
 
 let iterator = 0;
 
 for (const album of library.albums) {
-    /*if(album.id == albumQuery) {*/
+    if(album.id == albumQuery) {
       for (const picture of album.pictures) {
         iterator++;
         renderImage(
@@ -32,7 +32,7 @@ for (const album of library.albums) {
           iterator
         );
       }
-    /*}*/
+    }
   }
 });
 

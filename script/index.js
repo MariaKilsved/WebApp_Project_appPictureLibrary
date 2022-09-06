@@ -26,7 +26,7 @@ window.addEventListener('click',  () => {
 });
 
 //Render the albums
-function renderAlbum(src, tag, title) {
+function renderAlbum(src, id, title) {
   /*
   <div class="gallery" >
     <a target="_self" href="album_view.html" >
@@ -42,9 +42,9 @@ function renderAlbum(src, tag, title) {
 
   //<a target="_self" href="album_view.html" >
   const a = document.createElement('a');
-  a.href = "#"; //Fix this later
+  a.href = `album_view.html?${id}`;
   a.target = "_self";
-  a.dataset.albumId = tag;
+  a.dataset.albumId = id;
 
   //<img src="app-data/library/pictures/album-header/A Galactic Spectacle_4862916839_o~small.jpg" alt="Newborn Stars" width="600" height="400" >
   const img = document.createElement('img');
