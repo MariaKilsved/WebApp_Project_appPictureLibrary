@@ -15,7 +15,7 @@ library = await lib.pictureLibraryBrowser.fetchJSON(libraryJSON);  //reading lib
 //library = lib.pictureLibraryBrowser.createFromTemplate();  //generating a library template instead of reading JSON
 
 for (const album of library.albums) {
-    renderAlbum(album.headerImage, album.id);
+    renderAlbum(album.headerImage, album.id, album.title);
   }
 })
 
@@ -26,17 +26,43 @@ window.addEventListener('click',  () => {
 });
 
 //Render the albums
-function renderAlbum(src, tag) {
+function renderAlbum(src, tag, title) {
+  /*
+  <div class="gallery" >
+    <a target="_self" href="album_view.html" >
+      <img src="app-data/library/pictures/album-header/A Galactic Spectacle_4862916839_o~small.jpg" alt="Newborn Stars" width="600" height="400" >
+    </a>
+    <div class="desc">Newborn Stars</div>
+  </div>
+  */
 
+  //<div class="gallery" >
+  const gallery = document.createElement('div');
+  gallery.className = `gallery`;
+
+  //<a target="_self" href="album_view.html" >
   const a = document.createElement('a');
   a.href = "#"; //Fix this later
-  a.className = `albumLink`;
+  a.target = "_self";
   a.dataset.albumId = tag;
 
+  //<img src="app-data/library/pictures/album-header/A Galactic Spectacle_4862916839_o~small.jpg" alt="Newborn Stars" width="600" height="400" >
   const img = document.createElement('img');
   img.src = src;
-  a.appendChild(img);
+  img.alt = title;
+  img.width = "600";
+  img.height = "400";
 
-  const FlexWrap = document.querySelector('.FlexWrap');
-  FlexWrap.appendChild(a);
+  //<div class="desc">Newborn Stars</div>
+  const desc = document.createElement('div');
+  desc.className = `desc`;
+  const textNode = document.createTextNode(title);
+  desc.appendChild(textNode);
+
+  //Appending
+  a.appendChild(img);
+  gallery.appendChild(a);
+  gallery.appendChild(desc);
+  const albums = document.getElementById('albums');
+  albums.appendChild(gallery);
 };
