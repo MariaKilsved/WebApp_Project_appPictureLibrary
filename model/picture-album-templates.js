@@ -92,7 +92,7 @@ class picturesTemplate {
                 }),
             Object.create(prototypePicture,
                 {
-                    id: { value: uniqueId() },
+                    id: { value: uniqueId(), writable: true, enumerable: true  },
                     title: { value: "History of Hubble Space Telescope (HST)", writable: true, enumerable: true },
                     comment: {
                         value: "The Hubble Space Telescope (HST) pictured in the Vertical Processing Facility (VPF) support fixture " +
@@ -190,8 +190,8 @@ class picturesTemplate {
                         value: "NASA image release August 5, 2010 A beautiful new image of two colliding galaxies has been released by NASA's Great Observatories."
                         , writable: true, enumerable: true
                     },
-                    imgLoRes: { value: "A Galactic Spectacle_4862916839_o~orig.jpg", writable: true, enumerable: true },
-                    imgHiRes: { value: "A Galactic Spectacle_4862916839_o~orig.jpg", writable: true, enumerable: true }
+                    imgLoRes: { value: "A_Galactic_Spectacle_4862916839_o~orig.jpg", writable: true, enumerable: true },
+                    imgHiRes: { value: "A_Galactic_Spectacle_4862916839_o~orig.jpg", writable: true, enumerable: true }
                 }),
             Object.create(prototypePicture,
                 {
