@@ -9,12 +9,20 @@
     gap: 20px;
 }
 
+.card-link, 
+.card-link:link, 
+.card-link:visited, 
+.card-link:hover, 
+.card-link:active {
+    text-decoration: none;
+    color: #212529;
+}
+
 .card, .card-img, .card-img-top {
     border-radius: 0;
 }
 
 .card {
-    cursor: pointer;
     width: 100%;
 }
 
