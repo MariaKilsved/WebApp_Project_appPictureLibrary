@@ -48,6 +48,10 @@ body {
     .comment-box {
         padding-top: 100px;
     }
+    .main-image {
+        min-width: 80%;
+    }
+
 }
 
 .comment-box {
