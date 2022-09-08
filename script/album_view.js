@@ -15,12 +15,12 @@ library = await lib.pictureLibraryBrowser.fetchJSON(libraryJSON);  //reading lib
 //library = lib.pictureLibraryBrowser.createFromTemplate();  //generating a library template instead of reading JSON
 
 //Obtain album from URL:
-//let albumQuery = window.location.search.substring(1);
+let albumQuery = window.location.search.substring(1);
 
 let iterator = 0;
 
 for (const album of library.albums) {
-    /*if(album.id == albumQuery) {*/
+    if(album.id == albumQuery) {
       for (const picture of album.pictures) {
         iterator++;
         renderImage(
@@ -32,7 +32,7 @@ for (const album of library.albums) {
           iterator
         );
       }
-    /*}*/
+    }
   }
 });
 
@@ -44,18 +44,26 @@ window.addEventListener('click',  () => {
 
 //Render the images
 function renderImage(loResSrc, hiResSrc, tag, title, comment, iterator) {
-/*<div class="card">
-  <img src="..." class="card-img-top" alt="...">
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item">....</li>
-    <li class="list-group-item">....</li>
-  </ul>
-</div>*/
+/*<a href="" target="_self" class="card-link">
+  <div class="card">
+    <img src="..." class="card-img-top" alt="...">
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">....</li>
+      <li class="list-group-item">....</li>
+    </ul>
+  </div>
+</a>
+*/
 
 /*---Small screens - 1 column---*/
+  //<a href="" target="_self" class="card-link">
+  const aHref = document.createElement('a');
+  aHref.href = `zoomed_image.html?${tag}`;
+  aHref.target = "_self";
+  aHref.className = `card-link`;
 
   //<div class="card">
-  var card = document.createElement('div');
+  const card = document.createElement('div');
   card.className = `card`;
   card.dataset.albumId = tag;
 
@@ -88,16 +96,24 @@ function renderImage(loResSrc, hiResSrc, tag, title, comment, iterator) {
   ul.appendChild(li1);
   ul.appendChild(li2);
   card.appendChild(ul);
+
   //</div>
+  aHref.appendChild(card);
 
   const col1 = document.getElementById('c1');
-  col1.appendChild(card);
+  col1.appendChild(aHref);
 
 /*----------------------------------------------------------------------*/
 /*---Semi-small screens - 2 columns---*/
 
+    //<a href="" target="_self" class="card-link">
+    const aHref2 = document.createElement('a');
+    aHref2.href = `zoomed_image.html?${tag}`;
+    aHref2.target = "_self";
+    aHref2.className = `card-link`;
+
   //<div class="card">
-  var card2 = document.createElement('div');
+  const card2 = document.createElement('div');
   card2.className = `card`;
   card2.dataset.albumId = tag;
 
@@ -130,22 +146,30 @@ function renderImage(loResSrc, hiResSrc, tag, title, comment, iterator) {
   ul2.appendChild(li1_2);
   ul2.appendChild(li2_2);
   card2.appendChild(ul2);
+
   //</div>
+  aHref2.appendChild(card2);
 
   if(iterator % 2 === 1) {
     const col2 = document.getElementById('c2');
-    col2.appendChild(card2);
+    col2.appendChild(aHref2);
   }
   else {
     const col3 = document.getElementById('c3');
-    col3.appendChild(card2);
+    col3.appendChild(aHref2);
   }
 
 /*----------------------------------------------------------------------*/
 /*---Semi-large screens - 3 columns---*/
 
+  //<a href="" target="_self" class="card-link">
+  const aHref3 = document.createElement('a');
+  aHref3.href = `zoomed_image.html?${tag}`;
+  aHref3.target = "_self";
+  aHref3.className = `card-link`;
+
   //<div class="card">
-  var card3 = document.createElement('div');
+  const card3 = document.createElement('div');
   card3.className = `card`;
   card3.dataset.albumId = tag;
 
@@ -178,27 +202,34 @@ function renderImage(loResSrc, hiResSrc, tag, title, comment, iterator) {
   ul3.appendChild(li1_3);
   ul3.appendChild(li2_3);
   card3.appendChild(ul3);
+
   //</div>
+  aHref3.appendChild(card3);
 
   if(iterator % 3 === 1) {
     const col4 = document.getElementById('c4');
-    col4.appendChild(card3);
+    col4.appendChild(aHref3);
   }
   else if (iterator % 3 === 2){
     const col5 = document.getElementById('c5');
-    col5.appendChild(card3);
+    col5.appendChild(aHref3);
   }
   else {
     const col6 = document.getElementById('c6');
-    col6.appendChild(card3);
+    col6.appendChild(aHref3);
   }
 
 /*----------------------------------------------------------------------*/
 /*---Large screens - 4 columns---*/
 
+  //<a href="" target="_self" class="card-link">
+  const aHref4 = document.createElement('a');
+  aHref4.href = `zoomed_image.html?${tag}`;
+  aHref4.target = "_self";
+  aHref4.className = `card-link`;
 
   //<div class="card">
-  var card4 = document.createElement('div');
+  const card4 = document.createElement('div');
   card4.className = `card`;
   card4.dataset.albumId = tag;
 
@@ -231,23 +262,25 @@ function renderImage(loResSrc, hiResSrc, tag, title, comment, iterator) {
   ul4.appendChild(li1_4);
   ul4.appendChild(li2_4);
   card4.appendChild(ul4);
+
   //</div>
+  aHref4.appendChild(card4);
 
   if(iterator % 4 === 1) {
     const col7 = document.getElementById('c7');
-    col7.appendChild(card4);
+    col7.appendChild(aHref4);
   }
   else if (iterator % 4 === 2){
     const col8 = document.getElementById('c8');
-    col8.appendChild(card4);
+    col8.appendChild(aHref4);
   }
   else if (iterator % 4 === 3) {
     const col9 = document.getElementById('c9');
-    col9.appendChild(card4);
+    col9.appendChild(aHref4);
   }
   else {
     const col10 = document.getElementById('c10');
-    col10.appendChild(card4);
+    col10.appendChild(aHref4);
   }
 };
 
