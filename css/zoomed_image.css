@@ -45,6 +45,13 @@ body {
     margin-left: 50%;
 }
 
+.comment-section button {
+    margin-left: 200%;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
 @media only screen and (max-width: 950px) {
     .comment-box {
         padding-top: 100px;
