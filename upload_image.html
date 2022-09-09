@@ -48,28 +48,48 @@
                 
         <h3>Upload picture</h3><br><br><!--Behöver ta bort br-->     
 
-      <form>
+      <!-- <form>
         <div class="formBox">
           <label for="title">Title</label>
           <input type="text" id="title" placeholder="Title" class="resizedTextbox"/>
         </div>
         <div class="formBox">
           <label for="myFile">filnamn</label> <!--Behöver ta bort label från sida-->
-          <input type="file" id="myFile" name="filename" class="colorChange">
+          <!--<input type="file" id="myFile" name="filename" class="colorChange">
           <button type="submit" id="btn">Submit</button>
           <button type="reset" id="btn2">Cancel</button>
+
       </div>
         <div id="msg">
             <pre></pre>
         </div>
-    </form>
+    </form> -->
+    
+    <form>
+      <div class="formBox">
+        <label for="title">Title</label>
+        <input type="text" id="title" placeholder="Title" class="resizedTextbox"/>
+      </div>
+      <div class="formBox">
+        <label for="myFile">filnamn</label> <!--Behöver ta bort label från sida-->
+        <input type="file" id="image-input" name="filename" accept="image/jpeg, image/png, image/jpg" class="colorChange">
+        <button type="submit" id="btn">Submit</button>
+        <button type="reset" id="btn2">Cancel</button>
+
+    </div>
+     
+  </form>
         <div class="flex-container2"><br><!--Behöver ta bort br-->
           
           <h3>Already added</h3><br><br><!--Behöver ta bort br-->
+
+          
           
           <form>
           <div class="flexbox-image">
-          <label for="answerImg1" >Image1</label>
+            <div id="display-image"></div>
+          </div>
+          <!-- <label for="answerImg1" >Image1</label>
           <input id="answerImg1" type="image" alt="First Photo" multiple onchange="myFile()" />
           <label for="answerImg2" >Image2</label>
           <input id="answerImg2" type="image" alt="Second Photo" multiple onchange="myFile()" />
@@ -79,7 +99,7 @@
         <div class="formBox">
           <button type="submit" id="btn3">Submit</button>
           <button type="reset" id="btn4">Cancel</button>
-        </div>
+        </div> -->
         </form>
       
       </div>

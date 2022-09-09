@@ -30,13 +30,14 @@ body {
 
 .main-image {
     margin-top: 50px;
-    margin-bottom: 50px;
+    margin-bottom: 10px;
     width: 50%;
     height: auto;
 }
 
 
 .comment-section {
+    display: flex;
     background-color: darkgray;
     transform: translate(-50%, -50%);
     width: 500px;
@@ -48,6 +49,10 @@ body {
     .comment-box {
         padding-top: 100px;
     }
+    .main-image {
+        min-width: 80%;
+    }
+
 }
 
 .comment-box {
@@ -87,3 +92,52 @@ body {
     border-radius: 5%;
     margin-left : 35%;
 }
+
+.star-rating {
+    display: flex;
+    align-items: center;
+    width: 160px;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    margin: 40px auto;
+    position: relative;
+  }
+
+  input:not(:checked)~ label:hover~ label {
+    color:#678D58; 
+  }
+
+  .star-rating input {
+    display: none;
+  }
+
+  .star-rating > label {
+    width: 30px;
+    height: 30px;
+    font-family: Arial;
+    font-size: 30px;
+    transition: 0.2s ease;
+    color: black;
+  }
+
+  .star-rating label:hover {
+    color: #F6E7CB;
+    transition: 0.2s ease;
+    opacity: 50%;
+  }
+
+  .star-rating label:active::before {
+    transform:scale(1.1);
+  }
+
+  .star-rating label::before {
+    content: '\2606';
+    position: absolute;
+    top: 0px;
+    line-height: 26px;
+  }
+
+  .star-rating input:checked ~ label:before {
+    content:'\2605';
+
+  }
