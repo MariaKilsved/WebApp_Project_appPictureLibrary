@@ -26,6 +26,8 @@ for (const album of library.albums) {
                 `${album.path}/${picture.imgHiRes}`, 
                 picture.title
             );
+            renderImageTitle(picture.title);
+            renderEditButton();
         }
     }
   }
@@ -49,7 +51,28 @@ function renderImage(loResSrc, hiResSrc, title) {
 
     const imageContainer = document.getElementById('imageContainer');
     imageContainer.appendChild(img);
+
 };
+
+function renderImageTitle(title) {
+    const h2 = document.createElement('h2');
+    h2.className = `image-title`;
+    h2.textContent = title;
+
+    const titleContainer = document.getElementById('titleContainer');
+    titleContainer.appendChild(h2);
+}
+
+function renderEditButton() {
+    const button = document.createElement('button');
+    button.className = `material-symbols-outlined`;
+    button.textContent = `edit`;
+    button.href = `edit_image.html`;
+
+    const titleContainer = document.getElementById('titleContainer');
+    titleContainer.appendChild(button);
+}
+
 
 
 

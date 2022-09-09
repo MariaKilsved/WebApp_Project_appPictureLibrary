@@ -35,6 +35,11 @@ body {
     height: auto;
 }
 
+.image-description {
+    margin-bottom: 10px;
+    text-align: center;
+}
+
 
 .comment-section {
     display: flex;
