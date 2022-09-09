@@ -15,14 +15,16 @@ library = await lib.pictureLibraryBrowser.fetchJSON(libraryJSON);  //reading lib
 //library = lib.pictureLibraryBrowser.createFromTemplate();  //generating a library template instead of reading JSON
 
 //Obtain album from URL:
-let albumQuery = window.location.search.substring(1);
+const albumQuery = window.location.search.substring(1);
 
 let counter = 0;
+let allPictureIds = [];
 
 for (const album of library.albums) {
     if(album.id == albumQuery) {
       for (const picture of album.pictures) {
         counter++;
+        allPictureIds.push(picture.id);
         renderImage(
           `${album.path}/${picture.imgLoRes}`, 
           `${album.path}/${picture.imgHiRes}`, 
@@ -33,6 +35,15 @@ for (const album of library.albums) {
       }
     }
   }
+
+  //Event listeners for buttons
+  document.getElementById('redirectAll').addEventListener("click", redirectAll);
+  document.getElementById('redirectSelected').addEventListener("click", redirectSelection);
+
+
+  /*---------------*/
+  /*    More CSS   */
+  /*---------------*/
 
   var root = document.querySelector(':root');
 
@@ -55,7 +66,7 @@ for (const album of library.albums) {
 function renderImage(loResSrc, hiResSrc, tag, title, comment) {
 /*<div class="card">
     <a href="..." target="_self>
-      <img src="..." class="card-img-top" alt="...">
+      <img src="..." srcset="..." class="card-img-top" alt="...">
     </a>
     <ul class="list-group list-group-flush">
       <li class="list-group-item">....</li>
@@ -83,7 +94,7 @@ function renderImage(loResSrc, hiResSrc, tag, title, comment) {
   aHref.target = "_self";
   aHref.className = `card-link`;
 
-  //<img src="..." class="card-img-top" alt="...">
+  //<img src="..." srcset="..." class="card-img-top" alt="...">
   const img = document.createElement('img');
   img.src = hiResSrc;
   img.srcset = `${loResSrc}, ${hiResSrc} 2x`;    //Actual width is unknown
@@ -133,6 +144,7 @@ function renderImage(loResSrc, hiResSrc, tag, title, comment) {
   check.dataset.id = tag;
   check.id = tag;
   check.name = "check";
+  check.value = tag;
   pill.appendChild(check);
   
   //<div class="toggler-slider">
@@ -159,6 +171,27 @@ function renderImage(loResSrc, hiResSrc, tag, title, comment) {
   imageGallery.appendChild(card);
 };
 
+//onclick to redirect to slideshow
+function redirectAll() {
+  //Obtain album from URL:
+  const albumQuery = window.location.search.substring(1);
+  window.location.href = `slideshow.html?album=${albumQuery}`;
+}
 
+//onclick to redirect to slideshow, but only with selected images
+function redirectSelection() {
+  const albumQuery = window.location.search.substring(1);
+  let searchParams = new URLSearchParams(`album=${albumQuery}`);
+  let checkboxes = document.getElementsByName('check');
+
+  for(let i = 0; i < checkboxes.length; i++) {
+    if(checkboxes[i].checked === true) {
+      searchParams.append('id', checkboxes[i].value);
+    }
+  }
+
+  window.location.href = `slideshow.html?${searchParams.toString()}`;
+
+}
 
 
