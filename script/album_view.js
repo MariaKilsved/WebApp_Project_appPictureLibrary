@@ -15,66 +15,94 @@ library = await lib.pictureLibraryBrowser.fetchJSON(libraryJSON);  //reading lib
 //library = lib.pictureLibraryBrowser.createFromTemplate();  //generating a library template instead of reading JSON
 
 //Obtain album from URL:
-let albumQuery = window.location.search.substring(1);
+const albumQuery = window.location.search.substring(1);
 
-let iterator = 0;
+let counter = 0;
+let allPictureIds = [];
 
 for (const album of library.albums) {
     if(album.id == albumQuery) {
       for (const picture of album.pictures) {
-        iterator++;
+        counter++;
+        allPictureIds.push(picture.id);
         renderImage(
           `${album.path}/${picture.imgLoRes}`, 
           `${album.path}/${picture.imgHiRes}`, 
           picture.id, 
           picture.title, 
-          picture.comment,
-          iterator
+          picture.comment
         );
       }
     }
   }
-});
 
-window.addEventListener('click',  () => {
+  //Event listeners for buttons
+  document.getElementById('redirectAll').addEventListener("click", redirectAll);
+  document.getElementById('redirectSelected').addEventListener("click", redirectSelection);
 
-  //just to confirm that the library is accessible as a global variable read async
-  console.log (`library has ${library.albums.length} albums`);
+
+  /*---------------*/
+  /*    More CSS   */
+  /*---------------*/
+
+  var root = document.querySelector(':root');
+
+  //Calculate appropriate max-height
+  let smallHeight = (((counter * 630) - ((counter * 630) % 2)) / 2) + 630;
+  let mediumHeight = (((counter * 630) - ((counter * 630) % 3)) / 3) + 630;
+
+  let largeHeight = (((counter * 800) - ((counter * 800) % 4)) / 4) + 800;
+
+  let extraLargeHeight = (((counter * 800) - ((counter * 800) % 4)) / 4) + 800;
+  //let largeHeight = ((counter * 615) / 4) + 615;
+
+  root.style.setProperty('--smallHeight', `${smallHeight}px`);
+  root.style.setProperty('--mediumHeight', `${mediumHeight}px`);
+  root.style.setProperty('--largeHeight', `${largeHeight}px`);
+  root.style.setProperty('--extraLargeHeight', `${extraLargeHeight}px`);
 });
 
 //Render the images
-function renderImage(loResSrc, hiResSrc, tag, title, comment, iterator) {
-/*<a href="" target="_self" class="card-link">
-  <div class="card">
-    <img src="..." class="card-img-top" alt="...">
+function renderImage(loResSrc, hiResSrc, tag, title, comment) {
+/*<div class="card">
+    <a href="..." target="_self>
+      <img src="..." srcset="..." class="card-img-top" alt="...">
+    </a>
     <ul class="list-group list-group-flush">
       <li class="list-group-item">....</li>
       <li class="list-group-item">....</li>
+      <li class="list-group-item">
+        <span>Add to slideshow</span>
+          <label class="toggler-wrapper">
+            <input type="checkbox" >
+            <div class="toggler-slider">
+              <div class="toggler-knob"></div>
+            </div>
+          </label>
+      </li>
     </ul>
   </div>
-</a>
 */
 
-/*---Small screens - 1 column---*/
-  //<a href="" target="_self" class="card-link">
+//<div class="card">
+  const card = document.createElement('div');
+  card.className = `card`;
+
+  //<a href="..." target="_self>
   const aHref = document.createElement('a');
   aHref.href = `zoomed_image.html?${tag}`;
   aHref.target = "_self";
   aHref.className = `card-link`;
 
-  //<div class="card">
-  const card = document.createElement('div');
-  card.className = `card`;
-  card.dataset.albumId = tag;
-
-  //<img src="..." class="card-img-top" alt="...">
+  //<img src="..." srcset="..." class="card-img-top" alt="...">
   const img = document.createElement('img');
   img.src = hiResSrc;
   img.srcset = `${loResSrc}, ${hiResSrc} 2x`;    //Actual width is unknown
   img.loading = `lazy`;
   img.className = `card-img-top`;
   img.alt = title;
-  card.appendChild(img);
+  aHref.appendChild(img);
+  card.appendChild(aHref);
 
   //<ul class="list-group list-group-flush">
   const ul = document.createElement('ul');
@@ -83,8 +111,11 @@ function renderImage(loResSrc, hiResSrc, tag, title, comment, iterator) {
   //<li class="list-group-item">....</li>
   const li1 = document.createElement('li');
   li1.className = `list-group-item`;
+  const h6 = document.createElement('h6');
+  h6.className = `mb-0`;
   const text1 = document.createTextNode(title);
-  li1.appendChild(text1);
+  h6.appendChild(text1);
+  li1.appendChild(h6);
 
   //<li class="list-group-item">....</li>
   const li2 = document.createElement('li');
@@ -92,198 +123,75 @@ function renderImage(loResSrc, hiResSrc, tag, title, comment, iterator) {
   const text2 = document.createTextNode(comment);
   li2.appendChild(text2);
 
+  //<li class="list-group-item">
+  const li3 = document.createElement('li');
+  li3.className = `list-group-item`;
+
+  //<span>Add to slideshow</span>
+  const span = document.createElement('span');
+  const text3 = document.createTextNode("Add to slideshow");
+  span.appendChild(text3);
+  li3.appendChild(span);
+
+  //<label class="toggler-wrapper">
+  const pill = document.createElement('label');
+  pill.className = `toggler-wrapper`;
+  pill.dataset.id = tag;
+
+  //<input type="checkbox" id="12345" name="check">
+  const check = document.createElement('input');
+  check.setAttribute("type", "checkbox");
+  check.dataset.id = tag;
+  check.id = tag;
+  check.name = "check";
+  check.value = tag;
+  pill.appendChild(check);
+  
+  //<div class="toggler-slider">
+  const toggler = document.createElement('div');
+  toggler.className = `toggler-slider`;
+
+  //<div class="toggler-knob"></div>
+  const knob = document.createElement('div');
+  knob.className = `toggler-knob`;
+  toggler.appendChild(knob);
+  pill.appendChild(toggler);
+
+  //li
+  li3.appendChild(pill);
+
   //</ul>
   ul.appendChild(li1);
   ul.appendChild(li2);
+  ul.appendChild(li3);
   card.appendChild(ul);
-
   //</div>
-  aHref.appendChild(card);
 
-  const col1 = document.getElementById('c1');
-  col1.appendChild(aHref);
-
-/*----------------------------------------------------------------------*/
-/*---Semi-small screens - 2 columns---*/
-
-    //<a href="" target="_self" class="card-link">
-    const aHref2 = document.createElement('a');
-    aHref2.href = `zoomed_image.html?${tag}`;
-    aHref2.target = "_self";
-    aHref2.className = `card-link`;
-
-  //<div class="card">
-  const card2 = document.createElement('div');
-  card2.className = `card`;
-  card2.dataset.albumId = tag;
-
-  //<img src="..." class="card-img-top" alt="...">
-  const img2 = document.createElement('img');
-  img2.src = hiResSrc;
-  img2.srcset = `${loResSrc}, ${hiResSrc} 2x`;    //Actual width is unknown
-  img2.loading = `lazy`;
-  img2.className = `card-img-top`;
-  img2.alt = title;
-  card2.appendChild(img2);
-
-  //<ul class="list-group list-group-flush">
-  const ul2 = document.createElement('ul');
-  ul2.className = `list-group list-group-flush`;
-
-  //<li class="list-group-item">....</li>
-  const li1_2 = document.createElement('li');
-  li1_2.className = `list-group-item`;
-  const text1_2 = document.createTextNode(title);
-  li1_2.appendChild(text1_2);
-
-  //<li class="list-group-item">....</li>
-  const li2_2 = document.createElement('li');
-  li2_2.className = `list-group-item`;
-  const text2_2 = document.createTextNode(comment);
-  li2_2.appendChild(text2_2);
-
-  //</ul>
-  ul2.appendChild(li1_2);
-  ul2.appendChild(li2_2);
-  card2.appendChild(ul2);
-
-  //</div>
-  aHref2.appendChild(card2);
-
-  if(iterator % 2 === 1) {
-    const col2 = document.getElementById('c2');
-    col2.appendChild(aHref2);
-  }
-  else {
-    const col3 = document.getElementById('c3');
-    col3.appendChild(aHref2);
-  }
-
-/*----------------------------------------------------------------------*/
-/*---Semi-large screens - 3 columns---*/
-
-  //<a href="" target="_self" class="card-link">
-  const aHref3 = document.createElement('a');
-  aHref3.href = `zoomed_image.html?${tag}`;
-  aHref3.target = "_self";
-  aHref3.className = `card-link`;
-
-  //<div class="card">
-  const card3 = document.createElement('div');
-  card3.className = `card`;
-  card3.dataset.albumId = tag;
-
-  //<img src="..." class="card-img-top" alt="...">
-  const img3 = document.createElement('img');
-  img3.src = hiResSrc;
-  img3.srcset = `${loResSrc}, ${hiResSrc} 2x`;    //Actual width is unknown
-  img3.loading = `lazy`;
-  img3.className = `card-img-top`;
-  img3.alt = title;
-  card3.appendChild(img3);
-
-  //<ul class="list-group list-group-flush">
-  const ul3 = document.createElement('ul');
-  ul3.className = `list-group list-group-flush`;
-
-  //<li class="list-group-item">....</li>
-  const li1_3 = document.createElement('li');
-  li1_3.className = `list-group-item`;
-  const text1_3 = document.createTextNode(title);
-  li1_3.appendChild(text1_3);
-
-  //<li class="list-group-item">....</li>
-  const li2_3 = document.createElement('li');
-  li2_3.className = `list-group-item`;
-  const text2_3 = document.createTextNode(comment);
-  li2_3.appendChild(text2_3);
-
-  //</ul>
-  ul3.appendChild(li1_3);
-  ul3.appendChild(li2_3);
-  card3.appendChild(ul3);
-
-  //</div>
-  aHref3.appendChild(card3);
-
-  if(iterator % 3 === 1) {
-    const col4 = document.getElementById('c4');
-    col4.appendChild(aHref3);
-  }
-  else if (iterator % 3 === 2){
-    const col5 = document.getElementById('c5');
-    col5.appendChild(aHref3);
-  }
-  else {
-    const col6 = document.getElementById('c6');
-    col6.appendChild(aHref3);
-  }
-
-/*----------------------------------------------------------------------*/
-/*---Large screens - 4 columns---*/
-
-  //<a href="" target="_self" class="card-link">
-  const aHref4 = document.createElement('a');
-  aHref4.href = `zoomed_image.html?${tag}`;
-  aHref4.target = "_self";
-  aHref4.className = `card-link`;
-
-  //<div class="card">
-  const card4 = document.createElement('div');
-  card4.className = `card`;
-  card4.dataset.albumId = tag;
-
-  //<img src="..." class="card-img-top" alt="...">
-  const img4 = document.createElement('img');
-  img4.src = hiResSrc;
-  img4.srcset = `${loResSrc}, ${hiResSrc} 2x`;    //Actual width is unknown
-  img4.loading = `lazy`;
-  img4.className = `card-img-top`;
-  img4.alt = title;
-  card4.appendChild(img4);
-
-  //<ul class="list-group list-group-flush">
-  const ul4 = document.createElement('ul');
-  ul4.className = `list-group list-group-flush`;
-
-  //<li class="list-group-item">....</li>
-  const li1_4 = document.createElement('li');
-  li1_4.className = `list-group-item`;
-  const text1_4 = document.createTextNode(title);
-  li1_4.appendChild(text1_4);
-
-  //<li class="list-group-item">....</li>
-  const li2_4 = document.createElement('li');
-  li2_4.className = `list-group-item`;
-  const text2_4 = document.createTextNode(comment);
-  li2_4.appendChild(text2_4);
-
-  //</ul>
-  ul4.appendChild(li1_4);
-  ul4.appendChild(li2_4);
-  card4.appendChild(ul4);
-
-  //</div>
-  aHref4.appendChild(card4);
-
-  if(iterator % 4 === 1) {
-    const col7 = document.getElementById('c7');
-    col7.appendChild(aHref4);
-  }
-  else if (iterator % 4 === 2){
-    const col8 = document.getElementById('c8');
-    col8.appendChild(aHref4);
-  }
-  else if (iterator % 4 === 3) {
-    const col9 = document.getElementById('c9');
-    col9.appendChild(aHref4);
-  }
-  else {
-    const col10 = document.getElementById('c10');
-    col10.appendChild(aHref4);
-  }
+  const imageGallery = document.querySelector('.imageGallery');
+  imageGallery.appendChild(card);
 };
 
+//onclick to redirect to slideshow
+function redirectAll() {
+  //Obtain album from URL:
+  const albumQuery = window.location.search.substring(1);
+  window.location.href = `slideshow.html?album=${albumQuery}`;
+}
 
+//onclick to redirect to slideshow, but only with selected images
+function redirectSelection() {
+  const albumQuery = window.location.search.substring(1);
+  let searchParams = new URLSearchParams(`album=${albumQuery}`);
+  let checkboxes = document.getElementsByName('check');
+
+  for(let i = 0; i < checkboxes.length; i++) {
+    if(checkboxes[i].checked === true) {
+      searchParams.append('id', checkboxes[i].value);
+    }
+  }
+
+  window.location.href = `slideshow.html?${searchParams.toString()}`;
+
+}
 
 

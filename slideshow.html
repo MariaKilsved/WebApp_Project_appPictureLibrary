@@ -8,84 +8,49 @@
         <link href="css/slideshow.css" rel="stylesheet">
     </head>
     <body>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <div class="container-fluid">
-              <a class="navbar-brand" href="#">Navbar</a>
-              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-              <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                  <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">Sort by rating</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">New album</a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </nav>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="index.html">Navbar</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Sort by rating</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="new_album.html">New album</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="upload_image.html">Upload picture</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
 
           <!--Bootstrap Carousel-->
           <div class="container mt-5">
-            <div id="slideIndicators" class="carousel slide" data-bs-ride="true">
-              <div class="carousel-indicators">
-                <button type="button" data-bs-target="#slideIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                <button type="button" data-bs-target="#slideIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                <button type="button" data-bs-target="#slideIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-              </div>
+            <div id="carouselIndicators" class="carousel slide" data-bs-ride="true">
               <div class="carousel-inner">
-                <div class="carousel-item active">
-                  <img src="app-data/library/pictures/nebulas/0301627~orig.jpg" loading="lazy" class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item">
-                  <img src="app-data/library/pictures/nebulas/GSFC_20171208_Archive_e000226~orig.jpg" loading="lazy" class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item">
-                  <img src="app-data/library/pictures/nebulas/GSFC_20171208_Archive_e000383~orig.jpg" loading="lazy" class="d-block w-100" alt="...">
-                </div>
+                <!--Images goes here-->
               </div>
-              <button class="carousel-control-prev" type="button" data-bs-target="#slideIndicators" data-bs-slide="prev">
+              <button class="carousel-control-prev" type="button" data-bs-target="#carouselIndicators" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Previous</span>
               </button>
-              <button class="carousel-control-next" type="button" data-bs-target="#slideIndicators" data-bs-slide="next">
+              <button class="carousel-control-next" type="button" data-bs-target="#carouselIndicators" data-bs-slide="next">
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Next</span>
               </button>
             </div>
           </div>
 
-          <!--Stars for rating-->
-          <div class="container">
-            <div class="d-flex justify-content-center mt-1">
-              <div class="stars d-flex justify-content-between">
-                <svg viewBox="0 0 260 245" class="star star-full">
-                  <path d="m56,237 74-228 74,228L10,96h240"/>
-                </svg>
-                <svg viewBox="0 0 260 245" class="star star-full">
-                  <path d="m56,237 74-228 74,228L10,96h240"/>
-                </svg>
-                <svg viewBox="0 0 260 245" class="star star-full">
-                  <path d="m56,237 74-228 74,228L10,96h240"/>
-                </svg>
-                <svg viewBox="0 0 260 245" class="star">
-                  <path d="m56,237 74-228 74,228L10,96h240"/>
-                </svg>
-                <svg viewBox="0 0 260 245" class="star">
-                  <path d="m56,237 74-228 74,228L10,96h240"/>
-                </svg>
-              </div>
-            </div>
-          </div>
-
-
-
-        <!--<script type="module" src="./script/slideshow.js"></script>-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
-    </body>
+        <script type="module" src="./script/slideshow.js"></script>
+      </body>
 </html>
