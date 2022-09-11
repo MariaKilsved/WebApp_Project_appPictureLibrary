@@ -40,6 +40,9 @@
         <div class="flexbox" id="titleContainer">
             <!--Image title goes here-->
             <!--Edit image title button goes here-->
+            <button class="material-symbols-outlined" id="editButton">
+                edit
+            </button>
         </div>
         <div class="flexbox" id="imageContainer">
             <!--Image goes here-->
@@ -81,6 +84,18 @@
                 </div>
                 <p>Comment Text</p>
                 <button type="button">Edit</button>
+            </div>
+        </div>
+        <div class="popup-bg">
+            <div class="popup-content">
+                <div class="close">
+                    +
+                </div>
+                <h3>Rename image title</h3>
+                <form>
+                    <input type="text" placeholder="New name">
+                    <a href="" class="save">Save</a>
+                </form>
             </div>
         </div>
         <script type="module" src="./script/zoomed_image.js"></script>

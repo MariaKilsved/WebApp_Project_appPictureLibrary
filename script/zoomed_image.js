@@ -27,18 +27,25 @@ for (const album of library.albums) {
                 picture.title
             );
             renderImageTitle(picture.title);
-            renderEditButton();
+            // renderEditButton();
         }
     }
   }
 })
 
-window.addEventListener('click',  () => {
 
+window.addEventListener('click',  () => {
   //just to confirm that the library is accessible as a global variable read async
   console.log (`library has ${library.albums.length} albums`);
 });
 
+document.querySelector('.close').addEventListener('click', () => {
+    document.querySelector('.popup-bg').style.display = 'none';
+});
+
+document.getElementById('editButton').addEventListener('click', () => {
+    document.querySelector('.popup-bg').style.display = 'flex';
+});
 //Render the image
 function renderImage(loResSrc, hiResSrc, title) {
     /*
@@ -63,15 +70,17 @@ function renderImageTitle(title) {
     titleContainer.appendChild(h2);
 }
 
-function renderEditButton() {
-    const button = document.createElement('button');
-    button.className = `material-symbols-outlined`;
-    button.textContent = `edit`;
-    button.href = `edit_image.html`;
+// function renderEditButton() {
+//     const button = document.createElement('button');
+//     button.className = `material-symbols-outlined`;
+//     button.textContent = `edit`;
+//     button.id = `editButton`;
 
-    const titleContainer = document.getElementById('titleContainer');
-    titleContainer.appendChild(button);
-}
+//     const titleContainer = document.getElementById('titleContainer');
+//     titleContainer.appendChild(button);
+// }
+
+
 
 
 
