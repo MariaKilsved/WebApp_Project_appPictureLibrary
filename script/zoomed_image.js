@@ -27,30 +27,24 @@ for (const album of library.albums) {
                 picture.title
             );
             renderImageTitle(picture.title);
-            // renderEditButton();
+            renderImageDescription(picture.comment);
         }
     }
   }
 })
 
-
-window.addEventListener('click',  () => {
-  //just to confirm that the library is accessible as a global variable read async
-  console.log (`library has ${library.albums.length} albums`);
-});
-
+// Event listener to close the pop-up window for edit image
 document.querySelector('.close').addEventListener('click', () => {
     document.querySelector('.popup-bg').style.display = 'none';
 });
 
+// Event listener for the edit button pop-up
 document.getElementById('editButton').addEventListener('click', () => {
     document.querySelector('.popup-bg').style.display = 'flex';
 });
-//Render the image
+
+// Render the image
 function renderImage(loResSrc, hiResSrc, title) {
-    /*
-    <img class="main-image" src="app-data/library/pictures/galaxies/0700064~orig.jpg" alt="A nice picture with space stuff">
-    */
     const img = document.createElement('img');
     img.className = `main-image`;
     img.srcset = `${loResSrc}, ${hiResSrc} 2x`;    //Actual width is unknown
@@ -61,6 +55,7 @@ function renderImage(loResSrc, hiResSrc, title) {
 
 };
 
+// Render the image title
 function renderImageTitle(title) {
     const h2 = document.createElement('h2');
     h2.className = `image-title`;
@@ -70,19 +65,17 @@ function renderImageTitle(title) {
     titleContainer.appendChild(h2);
 }
 
-// function renderEditButton() {
-//     const button = document.createElement('button');
-//     button.className = `material-symbols-outlined`;
-//     button.textContent = `edit`;
-//     button.id = `editButton`;
+// Render the image description
+function renderImageDescription(description) {
+    const p = document.createElement('p');
+    p.className = `image-description`;
+    p.textContent = description;
 
-//     const titleContainer = document.getElementById('titleContainer');
-//     titleContainer.appendChild(button);
-// }
+    const descriptionContainer = document.getElementById('descriptionContainer');
+    descriptionContainer.appendChild(p);
+}
 
+// Rename the image
+function renameImageTitle() {
 
-
-
-
-
-
+}
