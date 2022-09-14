@@ -114,9 +114,7 @@ async function setNewRating() {
     let rating = checkedRadio.value;
 
     //Add to library
-    let newLibrary = library;
-
-    for (const album of newLibrary.albums) {
+    for (const album of library.albums) {
         for (const picture of album.pictures) {
             let pictureQuery = window.location.search.substring(1);
             if(picture.id === pictureQuery) {
@@ -124,10 +122,10 @@ async function setNewRating() {
             }
         }
     }
-    console.log(newLibrary);
+    console.log(library);
 
     //Use function
-    await lib.pictureLibraryBrowser.postJSON(newLibrary, libraryJSON);
+    await lib.pictureLibraryBrowser.postJSON(library, libraryJSON);
 }
 
 // Rename the image
