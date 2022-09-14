@@ -9,16 +9,11 @@ body {
 }
 
 .toolbar {
-<<<<<<< HEAD
-	border-bottom: 1px solid #e7e7e7;
-	padding-right: 20px;
-	background-color:lightgray;
-=======
+
     border-bottom: 1px solid #bfbfbf;
     padding-right: 20px;
     background-color: lightgrey;
     box-shadow: 0 1px 5px #bfbfbf;
->>>>>>> main
 }
 
 .imageGallery {
