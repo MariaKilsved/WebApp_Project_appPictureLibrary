@@ -1,7 +1,10 @@
-
+body{
+  
+    background-color: lightgrey;
+}
 label{
-    background-color: white;
-    color: white;
+    background-color: lightgray;
+    color: lightgray;
 }
 .myFile{
     background-color: black;
@@ -46,6 +49,7 @@ border-radius: 6px;
 
 .resizedTextbox {
 width: 600px; height: 40px
+
 }
 
 .colorChange {

@@ -1,3 +1,9 @@
+body{
+  
+    background-color: lightgrey;
+}
+
+
 div.gallery {
     margin: 1vw;
     margin-top: 40px;
@@ -24,6 +30,6 @@ div.gallery {
     padding: 5px;
     text-align: center;
     font-size: 30px;
-    color: white;
+    color: black;
     
   }
