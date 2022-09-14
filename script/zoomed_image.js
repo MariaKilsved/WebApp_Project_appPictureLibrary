@@ -46,6 +46,10 @@ document.getElementById('editButton').addEventListener('click', () => {
     document.querySelector('.popup-bg').style.display = 'flex';
 });
 
+//Event listener for stars
+let stars = document.getElementsByName('stars');
+stars.forEach(star => star.addEventListener('click', setNewRating));
+
 // Render the image
 function renderImage(loResSrc, hiResSrc, title) {
     const img = document.createElement('img');
@@ -101,6 +105,29 @@ function renderRating(rating) {
         default:
             break;
       }
+}
+
+async function setNewRating() {
+    let radios = document.getElementsByName('stars');
+    let radiosArray = [...radios];
+    let checkedRadio = radiosArray.filter(radio => radio.checked === true)[0];
+    let rating = checkedRadio.value;
+
+    //Add to library
+    let newLibrary = library;
+
+    for (const album of newLibrary.albums) {
+        for (const picture of album.pictures) {
+            let pictureQuery = window.location.search.substring(1);
+            if(picture.id === pictureQuery) {
+                picture.rating = rating;
+            }
+        }
+    }
+    console.log(newLibrary);
+
+    //Use function
+    await lib.pictureLibraryBrowser.postJSON(newLibrary, libraryJSON);
 }
 
 // Rename the image

@@ -35,6 +35,23 @@ class pictureLibraryBrowser extends lib.pictureLibrary {
             console.log('Failed to recieved data from server');
         }
     }
+    static async postJSON(object, file) {
+        try {
+            const url = `../${libraryDir}/${file}`;
+            const response = await fetch(url, {
+                method: 'POST',
+                body: JSON.stringify(object)
+              });
+            if(response.status >= 200 && response.status < 400) {
+                const responeText = await response.text();
+                console.log(responeText);
+            }
+        }
+        catch(error) {
+            alert('Failed to post data to server');
+            console.log('Failed to post data to server');
+        }
+    }
 }
 
 // debugging only
