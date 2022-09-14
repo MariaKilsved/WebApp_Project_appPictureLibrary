@@ -149,7 +149,7 @@ input {
 }
 
 input:not(:checked)~ label:hover~ label {
-    color:#678D58; 
+    color:#535a5182; 
 }
 
 .star-rating input {
@@ -166,7 +166,7 @@ input:not(:checked)~ label:hover~ label {
 }
 
 .star-rating label:hover {
-    color: #F6E7CB;
+    color: #f1efec;
     transition: 0.2s ease;
     opacity: 50%;
 }
@@ -217,3 +217,9 @@ input:not(:checked)~ label:hover~ label {
     transform: rotate(45deg);
     cursor: pointer;
 }
+button{
+    background-color: black;
+    color: white;
+    margin: 8px 6px;
+    border-radius: 6px;
+    }
