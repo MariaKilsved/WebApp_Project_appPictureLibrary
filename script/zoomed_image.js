@@ -28,6 +28,9 @@ for (const album of library.albums) {
             );
             renderImageTitle(picture.title);
             renderImageDescription(picture.comment);
+            if(picture.rating !== null && picture.rating !== undefined && picture.rating != 0) {
+                renderRating(picture.rating);
+            }
         }
     }
   }
@@ -75,7 +78,7 @@ function renderImageDescription(description) {
     descriptionContainer.appendChild(p);
 }
 
-function setRating(rating) {
+function renderRating(rating) {
     if(rating === null || rating === undefined || rating === 0) {
         return;
     }
