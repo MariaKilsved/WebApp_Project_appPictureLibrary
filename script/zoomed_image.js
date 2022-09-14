@@ -75,6 +75,31 @@ function renderImageDescription(description) {
     descriptionContainer.appendChild(p);
 }
 
+function setRating(rating) {
+    if(rating === null || rating === undefined || rating === 0) {
+        return;
+    }
+    switch(rating) {
+        case 1:
+            document.querySelector('#star-1').checked = true;
+            break;
+        case 2:
+            document.querySelector('#star-2').checked = true;
+            break;
+        case 3:
+            document.querySelector('#star-3').checked = true;
+            break;
+        case 4:
+            document.querySelector('#star-4').checked = true;
+            break;
+        case 5:
+            document.querySelector('#star-5').checked = true;
+            break;
+        default:
+            break;
+      }
+}
+
 // Rename the image
 function renameImageTitle() {
 
