@@ -1,3 +1,8 @@
+body{
+    background-color: lightgrey;
+}
+
+
 section {
     position: absolute;
     top: 50%;
@@ -9,19 +14,31 @@ section {
 
 input.text {
     width: 600px;
+<<<<<<< HEAD
     height: 40px;
     border-radius: 5px;
     color: white;
   
 
+=======
+    border-radius: 5px;
+    height: 40px
+>>>>>>> main
 }
 
 input.submit {
     border-radius: 5px;
+<<<<<<< HEAD
     background-color: black;
     color: white;
     margin: 8px 6px;
     border-radius: 6px;
+=======
+        background-color: black;
+        color: white;
+        margin: 8px 6px;
+        border-radius: 6px;
+>>>>>>> main
         
 }
 
@@ -34,9 +51,19 @@ input.cancel {
 }
 
 p.newalbum {
+<<<<<<< HEAD
     color:black;
+=======
+    color: black;
+>>>>>>> main
     text-align: center;
     font-size: xx-large;
     margin-bottom: 50px;
 }
 
+<<<<<<< HEAD
+=======
+h3:hover{
+    cursor: pointer;
+ }
+>>>>>>> main

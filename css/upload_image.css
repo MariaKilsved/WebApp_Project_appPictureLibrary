@@ -1,6 +1,13 @@
-
+body{
+  
+    background-color: lightgrey;
+}
 label{
+<<<<<<< HEAD
     background-color:lightgray;
+=======
+    background-color: lightgray;
+>>>>>>> main
     color: lightgray;
 }
 .myFile{
@@ -45,8 +52,12 @@ border-radius: 6px;
 }
 
 .resizedTextbox {
+<<<<<<< HEAD
 width: 600px; height: 40px;
 
+=======
+width: 600px; height: 40px
+>>>>>>> main
 
 }
 
