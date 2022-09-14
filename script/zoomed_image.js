@@ -50,6 +50,10 @@ document.getElementById('editButton').addEventListener('click', () => {
 let stars = document.getElementsByName('stars');
 stars.forEach(star => star.addEventListener('click', setNewRating));
 
+//Event listener for submitting title form
+const titleForm = document.getElementById('titleForm');
+titleForm.addEventListener('submit', renameImageTitle);
+
 // Render the image
 function renderImage(loResSrc, hiResSrc, title) {
     const img = document.createElement('img');
@@ -129,6 +133,33 @@ async function setNewRating() {
 }
 
 // Rename the image
-function renameImageTitle() {
+async function renameImageTitle(e) {
+    e.preventDefault();
+
+    //Create the key/value pairs used in the form
+    const formData = new FormData(e.target);
+    const url = `../app-data/library/picture-library.json`;
+
+    try {
+        //send the data using post and await the reply
+        const response = await fetch(url, {
+          method: 'post',
+          body: formData
+        });
+        const result = await response.text();
+    
+        if (response.ok) {
+          alert("Thank you for submitting the information. It has been recieved");
+        }
+        else {
+          alert("Transmission error");
+        }
+        console.log(result);
+      }
+      catch {
+        alert("Transmission error");
+      }
+
+
 
 }
