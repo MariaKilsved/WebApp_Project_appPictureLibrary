@@ -4,6 +4,8 @@
 //import * as proto from './picture-album-prototypes.js';
 import * as lib from '../model/picture-library-browser.js';
 
+const path = `../app-data/library/picture-library.json`;
+
 const libraryJSON ="picture-library.json";
 let library;  //Global varibale, Loaded async from the current server in window.load event
 
@@ -46,6 +48,18 @@ document.getElementById('editButton').addEventListener('click', () => {
     document.querySelector('.popup-bg').style.display = 'flex';
 });
 
+//Event listener for stars
+let stars = document.getElementsByName('stars');
+stars.forEach(star => star.addEventListener('click', setNewRating));
+
+//Event listener for submitting title form
+const titleForm = document.getElementById('titleForm');
+titleForm.addEventListener('submit', renameImageTitle);
+
+//Event listener for submitting comment form
+const commentForm = document.getElementById('commentForm');
+commentForm.addEventListener('submit', postNewDescription);
+
 // Render the image
 function renderImage(loResSrc, hiResSrc, title) {
     const img = document.createElement('img');
@@ -76,6 +90,9 @@ function renderImageDescription(description) {
 
     const descriptionContainer = document.getElementById('descriptionContainer');
     descriptionContainer.appendChild(p);
+
+    const commentArea = document.getElementById('commentArea');
+    commentArea.placeholder = description;
 }
 
 function renderRating(rating) {
@@ -103,7 +120,67 @@ function renderRating(rating) {
       }
 }
 
-// Rename the image
-function renameImageTitle() {
+async function setNewRating() {
+    let radios = document.getElementsByName('stars');
+    let radiosArray = [...radios];
+    let checkedRadio = radiosArray.filter(radio => radio.checked === true)[0];
+    let rating = checkedRadio.value;
 
+    //Add to library
+    for (const album of library.albums) {
+        for (const picture of album.pictures) {
+            let pictureQuery = window.location.search.substring(1);
+            if(picture.id === pictureQuery) {
+                picture.rating = rating;
+            }
+        }
+    }
+    console.log(library);
+
+    //Use function
+    await lib.pictureLibraryBrowser.postJSON(library, libraryJSON);
+}
+
+// Rename the image
+async function renameImageTitle(e) {
+    e.preventDefault();
+
+    const titleString = document.getElementById("title").value;
+
+    //Add to library
+    for (const album of library.albums) {
+        for (const picture of album.pictures) {
+            let pictureQuery = window.location.search.substring(1);
+            if(picture.id === pictureQuery) {
+                picture.title = titleString;
+            }
+        }
+    }
+    console.log(library);
+
+    //Use function
+    await lib.pictureLibraryBrowser.postJSON(library, libraryJSON);
+
+    //Use function
+    //await lib.pictureLibraryBrowser.postJSON(library, libraryJSON);
+}
+
+async function postNewDescription(e) {
+    e.preventDefault();
+
+    const commentString = document.getElementById("commentArea").value;
+
+    //Add to library
+    for (const album of library.albums) {
+        for (const picture of album.pictures) {
+            let pictureQuery = window.location.search.substring(1);
+            if(picture.id === pictureQuery) {
+                picture.comment = commentString;
+            }
+        }
+    }
+    console.log(library);
+
+    //Use function
+    await lib.pictureLibraryBrowser.postJSON(library, libraryJSON);
 }
