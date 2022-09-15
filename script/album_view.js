@@ -16,13 +16,22 @@ library = await lib.pictureLibraryBrowser.fetchJSON(libraryJSON);  //reading lib
 
 //Obtain album from URL:
 const albumQuery = window.location.search.substring(1);
+const searchParams = new URLSearchParams(albumQuery);
+let isRatingAlbum = false;
+let isAlbum = false;
+if(searchParams.has('album')) {
+  isAlbum = true;
+}
+else if(searchParams.has('stars')) {
+  isRatingAlbum = true;
+}
 
 let counter = 0;
 let allPictureIds = [];
 
 for (const album of library.albums) {
-    if(album.id == albumQuery) {
-      for (const picture of album.pictures) {
+    if(isAlbum && album.id == searchParams.get('album')) {
+      for (let picture of album.pictures) {
         counter++;
         allPictureIds.push(picture.id);
         renderImage(
@@ -34,12 +43,33 @@ for (const album of library.albums) {
         );
       }
     }
+    else if(isRatingAlbum) {
+      for(let picture of album.pictures) {
+        if(picture.rating !== null && 
+          picture.rating !== undefined && 
+          picture.rating !== NaN && 
+          picture.rating == searchParams.get('stars')) {
+            counter++;
+            allPictureIds.push(picture.id);
+            renderImage(
+              `${album.path}/${picture.imgLoRes}`, 
+              `${album.path}/${picture.imgHiRes}`, 
+              picture.id, 
+              picture.title, 
+              picture.comment
+            );
+        }
+      }
+    }
   }
 
   //Event listeners for buttons
   document.getElementById('redirectAll').addEventListener("click", redirectAll);
   document.getElementById('redirectSelected').addEventListener("click", redirectSelection);
 
+  //Event listener for checking if button should be enabled or not
+  let allCheckboxes = document.querySelectorAll('.toggler-wrapper');
+  allCheckboxes.forEach(addEventListener("click", enableRedirectSelection));
 
   /*---------------*/
   /*    More CSS   */
@@ -171,6 +201,18 @@ function renderImage(loResSrc, hiResSrc, tag, title, comment) {
   imageGallery.appendChild(card);
 };
 
+function enableRedirectSelection() {
+  let btn = document.getElementById('redirectSelected');
+  let checkboxes = document.querySelectorAll('input[name=check]:checked');
+
+  if(checkboxes.length > 0) {
+    btn.disabled = false;
+  }
+  else {
+    btn.disabled = true;
+  }
+}
+
 //onclick to redirect to slideshow
 function redirectAll() {
   //Obtain album from URL:
@@ -182,12 +224,10 @@ function redirectAll() {
 function redirectSelection() {
   const albumQuery = window.location.search.substring(1);
   let searchParams = new URLSearchParams(`album=${albumQuery}`);
-  let checkboxes = document.getElementsByName('check');
+  let checkboxes = document.querySelectorAll('input[name=check]:checked');
 
   for(let i = 0; i < checkboxes.length; i++) {
-    if(checkboxes[i].checked === true) {
       searchParams.append('id', checkboxes[i].value);
-    }
   }
 
   window.location.href = `slideshow.html?${searchParams.toString()}`;
