@@ -30,6 +30,12 @@ app.post('/api/upload', (req, res) => {
   writeJSON(appJson, (req.body));
 });
 
+app.put('/api/update', (req, res) => {
+  res.send("PUT Request Called");
+
+  writeJSON(appJson, (req.body));
+});
+
 app.listen(port, () =>
   console.log(`Node server listening at http://localhost:${port}`)
 );

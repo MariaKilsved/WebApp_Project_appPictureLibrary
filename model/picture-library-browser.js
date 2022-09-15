@@ -53,6 +53,24 @@ class pictureLibraryBrowser extends lib.pictureLibrary {
             console.log('Transmission error');
         }
     }
+    static async putJSON(object, file) {
+        try {
+            const url = 'http://localhost:3000/api/update';
+
+            const response = await fetch(url, {
+                method: 'PUT',
+                body: JSON.stringify(object)
+              });
+            if(response.ok) {
+                const responeText = await response.text();
+                console.log(responeText);
+            }
+        }
+        catch(error) {
+            alert('Transmission error');
+            console.log('Transmission error');
+        }
+    }
 }
 
 // debugging only
