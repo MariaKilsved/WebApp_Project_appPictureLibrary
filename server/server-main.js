@@ -3,7 +3,7 @@ const path = require('path');
 const fs = require('fs');
 
 const express = require('express');
-const formidable = require('formidable');
+//const formidable = require('formidable');
 const cors = require('cors');
 
 const app = express();
@@ -24,54 +24,10 @@ app.get('/', (req, res) => {
 });
 */
 
-app.post('/api/createdir', (req, res) => {
-  const form = formidable();
+app.post('/api/upload', (req, res) => {
+  res.send("POST Request Called");
 
-  form.parse(req, (err, fields, files) => {
-    if (err) {
-      return;
-    }
-    console.log('POST body:', fields);
-
-    let albumStruct = {};
-    albumStruct.directoryPath = [];
-    albumStruct.imagePath = [];
-
-
-    if (fileExists(appJson))
-      albumStruct = readJSON(appJson);
-
-    //get the data sent over from browser
-    const dirToCreate = fields['directory'];
-    const fileXmit = fields['fileXmit'];
-
-    if (dirToCreate != '') {
-      //create the directory
-      dirCreate(dirToCreate);
-
-      //Store the images if the created directoru
-      if (fileIsValidImage(files.fileXmit1)) {
-        const fname = fileRelocate(files.fileXmit1, dirToCreate);
-        albumStruct.imagePath.push(fname);
-      }
-
-      if (fileIsValidImage(files.fileXmit2)) {
-        const fname = fileRelocate(files.fileXmit2, dirToCreate);
-        albumStruct.imagePath.push(fname);
-      }
-
-      //update the json file
-      albumStruct.directoryPath.push(dirToCreate)
-
-      //Make sure to remove duplicates
-      albumStruct.directoryPath = [...new Set(albumStruct.directoryPath)];  
-      albumStruct.imagePath = [...new Set(albumStruct.imagePath)];  
-      writeJSON(appJson, albumStruct);
-    }
-
-    //send success response
-    res.sendStatus(200);
-  });
+  writeJSON(appJson, (req.body));
 });
 
 app.listen(port, () =>

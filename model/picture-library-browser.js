@@ -37,7 +37,9 @@ class pictureLibraryBrowser extends lib.pictureLibrary {
     }
     static async postJSON(object, file) {
         try {
-            const url = `../${libraryDir}/${file}`;
+            const url = 'http://localhost:3000/api/upload';
+
+            const testing = JSON.stringify(object);
 
             const response = await fetch(url, {
                 method: 'POST',
