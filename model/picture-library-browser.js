@@ -41,18 +41,28 @@ class pictureLibraryBrowser extends lib.pictureLibrary {
 
             const response = await fetch(url, {
                 method: 'POST',
+                headers: { 'content-type': 'application/json' },
                 body: JSON.stringify(object)
               });
             if(response.ok) {
+                console.log("Request successful");
                 const responeText = await response.text();
                 console.log(responeText);
             }
+            else {
+                //typcially you would log an error instead
+                console.log(`Failed to recieved data from server: ${res.status}`);
+                alert(`Failed to recieved data from server: ${res.status}`);
+            }
         }
         catch(error) {
-            alert('Transmission error');
-            console.log('Transmission error');
+            console.log("Failed to receive data from server");
+            //console.log(`Failed to recieve data from server: ${err.message}`);
+            alert("Failed to recieve data from server");
+            //alert(`Failed to recieve data from server: ${err.message}`);
         }
     }
+    /*
     static async putJSON(object, file) {
         try {
             const url = 'http://localhost:3000/api/update';
@@ -71,6 +81,7 @@ class pictureLibraryBrowser extends lib.pictureLibrary {
             console.log('Transmission error');
         }
     }
+    */
 }
 
 // debugging only

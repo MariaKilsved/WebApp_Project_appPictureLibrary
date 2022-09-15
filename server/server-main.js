@@ -11,13 +11,16 @@ const port = 3000;
 
 app.use(cors());
 
-const appDir = './app-data/library';
+//Middleware in express.js to read json body
+app.use(express.json());
+
+const appDir = '../app-data/library';
 const appJson = 'picture-library.json';
 
-app.get('/', (req, res) =>
-  res.send('Example server for receiving JS POST requests')
-);
-
+app.get('/api/upload', (req, res) => {
+  response = readJSON(appJson);
+  res.send(response);
+});
 /* 
 app.get('/', (req, res) => {
   res.send(`Some kind of string in here`);
@@ -25,16 +28,20 @@ app.get('/', (req, res) => {
 */
 
 app.post('/api/upload', (req, res) => {
-  res.send("POST Request Called");
+  const b = req.body;
+  writeJSON(appJson, b);
 
-  writeJSON(appJson, (req.body));
+  //responds with the json file
+  res.json(b);
 });
 
+/*
 app.put('/api/update', (req, res) => {
   res.send("PUT Request Called");
 
   writeJSON(appJson, (req.body));
 });
+*/
 
 app.listen(port, () =>
   console.log(`Node server listening at http://localhost:${port}`)
