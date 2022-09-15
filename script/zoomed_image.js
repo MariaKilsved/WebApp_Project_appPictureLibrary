@@ -48,6 +48,10 @@ document.getElementById('editButton').addEventListener('click', () => {
     document.querySelector('.popup-bg').style.display = 'flex';
 });
 
+// Even listener for delete image button
+let deleteButton = document.getElementById('deleteButton');
+deleteButton.addEventListener('click', deleteImage);
+
 //Event listener for stars
 let stars = document.getElementsByName('stars');
 stars.forEach(star => star.addEventListener('click', setNewRating));
@@ -138,6 +142,22 @@ async function setNewRating() {
     console.log(library);
 
     //Use function
+    await lib.pictureLibraryBrowser.postJSON(library, libraryJSON);
+}
+
+async function deleteImage(e) {
+    e.preventDefault();
+    // find the image in the library and delete it
+    for (const album of library.albums) {
+        for (const picture of album.pictures) {
+            let pictureQuery = window.location.search.substring(1);
+            if(picture.id === pictureQuery) {
+                let index = album.pictures.indexOf(picture);
+                album.pictures.splice(index, 1);
+            }
+        }
+    }
+    location.replace("index.html");
     await lib.pictureLibraryBrowser.postJSON(library, libraryJSON);
 }
 
