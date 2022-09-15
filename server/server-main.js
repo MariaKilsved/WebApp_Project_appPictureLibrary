@@ -18,6 +18,12 @@ app.get('/', (req, res) =>
   res.send('Example server for receiving JS POST requests')
 );
 
+/* 
+app.get('/', (req, res) => {
+  res.send(`Some kind of string in here`);
+});
+*/
+
 app.post('/api/createdir', (req, res) => {
   const form = formidable();
 
@@ -69,7 +75,7 @@ app.post('/api/createdir', (req, res) => {
 });
 
 app.listen(port, () =>
-  console.log(`Example app listening at http://localhost:${port}`)
+  console.log(`Node server listening at http://localhost:${port}`)
 );
 
 //helper functions to check for files and directories

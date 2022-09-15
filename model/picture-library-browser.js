@@ -42,14 +42,14 @@ class pictureLibraryBrowser extends lib.pictureLibrary {
                 method: 'POST',
                 body: JSON.stringify(object)
               });
-            if(response.status >= 200 && response.status < 400) {
+            if(response.ok) {
                 const responeText = await response.text();
                 console.log(responeText);
             }
         }
         catch(error) {
-            alert('Failed to post data to server');
-            console.log('Failed to post data to server');
+            alert('Transmission error');
+            console.log('Transmission error');
         }
     }
 }

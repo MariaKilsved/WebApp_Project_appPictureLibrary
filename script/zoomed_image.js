@@ -145,10 +145,7 @@ async function setNewRating() {
 async function renameImageTitle(e) {
     e.preventDefault();
 
-    //Create the key/value pairs used in the form
-    const formData = new FormData(e.target);
-
-    const titleString = formData.get(title);
+    const titleString = document.getElementById("title").value;
 
     //Add to library
     for (const album of library.albums) {
@@ -161,13 +158,8 @@ async function renameImageTitle(e) {
     }
     console.log(library);
 
-    fs.writeFile(path, JSON.stringify(library), (error) => {
-        if (error) {
-          console.log('An error has occurred ', error);
-          return;
-        }
-        console.log('Data written successfully to disk');
-      });
+    //Use function
+    await lib.pictureLibraryBrowser.postJSON(library, libraryJSON);
 
     //Use function
     //await lib.pictureLibraryBrowser.postJSON(library, libraryJSON);
@@ -176,10 +168,7 @@ async function renameImageTitle(e) {
 async function postNewDescription(e) {
     e.preventDefault();
 
-    //Create the key/value pairs used in the form
-    const formData = new FormData(e.target);
-
-    const commentString = formData.get(comment);
+    const commentString = document.getElementById("commentArea").value;
 
     //Add to library
     for (const album of library.albums) {
