@@ -3,6 +3,9 @@
 
 //import * as proto from './picture-album-prototypes.js';
 import * as lib from '../model/picture-library-browser.js';
+import * as fs from 'fs';
+
+const path = `../app-data/library/picture-library.json`;
 
 const libraryJSON ="picture-library.json";
 let library;  //Global varibale, Loaded async from the current server in window.load event
@@ -54,6 +57,10 @@ stars.forEach(star => star.addEventListener('click', setNewRating));
 const titleForm = document.getElementById('titleForm');
 titleForm.addEventListener('submit', renameImageTitle);
 
+//Event listener for submitting comment form
+const commentForm = document.getElementById('commentForm');
+commentForm.addEventListener('submit', postNewDescription);
+
 // Render the image
 function renderImage(loResSrc, hiResSrc, title) {
     const img = document.createElement('img');
@@ -84,6 +91,9 @@ function renderImageDescription(description) {
 
     const descriptionContainer = document.getElementById('descriptionContainer');
     descriptionContainer.appendChild(p);
+
+    const commentArea = document.getElementById('commentArea');
+    commentArea.placeholder = description;
 }
 
 function renderRating(rating) {
@@ -138,28 +148,51 @@ async function renameImageTitle(e) {
 
     //Create the key/value pairs used in the form
     const formData = new FormData(e.target);
-    const url = `../app-data/library/picture-library.json`;
 
-    try {
-        //send the data using post and await the reply
-        const response = await fetch(url, {
-          method: 'post',
-          body: formData
-        });
-        const result = await response.text();
-    
-        if (response.ok) {
-          alert("Thank you for submitting the information. It has been recieved");
+    const titleString = formData.get(title);
+
+    //Add to library
+    for (const album of library.albums) {
+        for (const picture of album.pictures) {
+            let pictureQuery = window.location.search.substring(1);
+            if(picture.id === pictureQuery) {
+                picture.title = titleString;
+            }
         }
-        else {
-          alert("Transmission error");
+    }
+    console.log(library);
+
+    fs.writeFile(path, JSON.stringify(library), (error) => {
+        if (error) {
+          console.log('An error has occurred ', error);
+          return;
         }
-        console.log(result);
-      }
-      catch {
-        alert("Transmission error");
-      }
+        console.log('Data written successfully to disk');
+      });
 
+    //Use function
+    //await lib.pictureLibraryBrowser.postJSON(library, libraryJSON);
+}
 
+async function postNewDescription(e) {
+    e.preventDefault();
 
+    //Create the key/value pairs used in the form
+    const formData = new FormData(e.target);
+
+    const commentString = formData.get(comment);
+
+    //Add to library
+    for (const album of library.albums) {
+        for (const picture of album.pictures) {
+            let pictureQuery = window.location.search.substring(1);
+            if(picture.id === pictureQuery) {
+                picture.comment = commentString;
+            }
+        }
+    }
+    console.log(library);
+
+    //Use function
+    await lib.pictureLibraryBrowser.postJSON(library, libraryJSON);
 }

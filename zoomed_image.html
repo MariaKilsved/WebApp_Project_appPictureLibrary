@@ -65,23 +65,13 @@
           <label for="star-1"></label>
         </div>
         <div class="comment-box">
-            <h2>Comments</h2>
-            <form action="#">
-                <textarea name="comment" placeholder="Say something"></textarea>
-                <input type="text" name="full_name" value="Name">
-                <button type="submit">Submit Comment</button>
+            <h2>Edit Description</h2>
+            <form id="commentForm">
+                <textarea name="comment" placeholder="Say something" id="commentArea"></textarea>
+                <button type="submit">Submit Description</button>
             </form>
         </div>
-        <div class="comment-section">
-            <div class="comment">
-                <div class="comment-header">
-                    <h3>Commenter Name</h3>
-                    <p>Comment Date</p>
-                </div>
-                <p>Comment Text</p>
-                <button type="button">Edit</button>
-            </div>
-        </div>
+
         <div class="popup-bg">
             <div class="popup-content">
                 <div class="close">
@@ -89,7 +79,7 @@
                 </div>
                 <h3>Rename image title</h3>
                 <form id="titleForm">
-                    <input type="text" placeholder="New name">
+                    <input type="text" placeholder="New name" name="title">
                     <button type="submit">Rename</button>
                 </form>
             </div>
