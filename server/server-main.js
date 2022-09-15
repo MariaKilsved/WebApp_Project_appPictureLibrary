@@ -11,8 +11,8 @@ const port = 3000;
 
 app.use(cors());
 
-const appDir = './app-data';
-const appJson = 'albums.json';
+const appDir = './app-data/library';
+const appJson = 'picture-library.json';
 
 app.get('/', (req, res) =>
   res.send('Example server for receiving JS POST requests')
