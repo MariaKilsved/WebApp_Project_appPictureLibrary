@@ -29,7 +29,7 @@ model, running on localhost.
 - Using React framework and or Bootstrap is optional.
 - Current versions of Edge, Chrome, Firefox, and Safari should be supported but older
 browser technologies do not need to be supported.
- -CSS media queries should be used so the layout and the resolution of the pictures adapts
+-CSS media queries should be used so the layout and the resolution of the pictures adapts
 to the viewport size used. I.e., Mobile, Tablets and Laptop viewport sizes should have
 different and appropriate layouts as well as using different picture resolutions for
 performance
@@ -73,7 +73,7 @@ addition to the album they are originally in.
 able to see as a slide show.
 - A user should be able to create and save a new album with header text, and a header
 picture uploaded.
-- A user should be able to upload a picture in 3 different resolutions (high, medium, low), a
+- A user should be able to upload a picture in 2 different resolutions (high, low), a
 picture title and picture comment. Add the picture to an album and save the album.
 - Remove a picture from an album and save the updated album. The actual picture,
 residing on the local host does not need to be deleted
