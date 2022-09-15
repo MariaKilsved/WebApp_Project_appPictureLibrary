@@ -1,3 +1,8 @@
+body{
+        background-color: lightgrey;
+  
+}
+
 .carousel, .carousel-inner {
     max-height: calc(100vh - 12.875rem);
     width: auto;

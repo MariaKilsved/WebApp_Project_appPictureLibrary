@@ -3,7 +3,6 @@
 
 //import * as proto from './picture-album-prototypes.js';
 import * as lib from '../model/picture-library-browser.js';
-import * as fs from 'fs';
 
 const path = `../app-data/library/picture-library.json`;
 
