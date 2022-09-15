@@ -145,8 +145,7 @@ async function setNewRating() {
     await lib.pictureLibraryBrowser.postJSON(library, libraryJSON);
 }
 
-async function deleteImage(e) {
-    e.preventDefault();
+async function deleteImage() {
     // find the image in the library and delete it
     for (const album of library.albums) {
         for (const picture of album.pictures) {
@@ -154,11 +153,11 @@ async function deleteImage(e) {
             if(picture.id === pictureQuery) {
                 let index = album.pictures.indexOf(picture);
                 album.pictures.splice(index, 1);
+                await lib.pictureLibraryBrowser.postJSON(library, libraryJSON);
             }
         }
     }
     location.replace("index.html");
-    await lib.pictureLibraryBrowser.postJSON(library, libraryJSON);
 }
 
 // Rename the image
