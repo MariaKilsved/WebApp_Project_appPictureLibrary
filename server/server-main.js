@@ -16,7 +16,6 @@ app.use(express.json());
 
 const appDir = '../app-data/library';
 const appJson = 'picture-library.json';
-const libraryJsonPath = '../app-data/library/picture-library.json';
 
 /*------------------------------------------------------ */
 
@@ -34,68 +33,6 @@ app.post('/api/upload', (req, res) => {
   res.json(b);
 });
 
-
-//Post request
-/*
-app.post('/api/newalbum', (req, res) => {
-
-  //Creates a formidable object of the incoming data
-  let form = new formidable.IncomingForm();
-  form.parse(req, function (err, fields, files) {
-
-      // fs.mkdirSync(path.resolve(`app-data/library/pictures/${fields.title}`));
-
-      let newName = files.myImage.originalFilename.trim().replace(' ', '-').replace(/(\s|-|_|~)+/g, '-').toLowerCase();
-      let oldPath = files.myImage.filepath;
-      let title = fields.title.trim().replace(' ', '-').replace(/(\s|-|_|~)+/g, '-').toLowerCase();
-      const dir = `app-data/library/pictures/${title}`;
-
-      let newPath = './app-data/library/pictures/album-header/' +  newName;
-
-      console.log(newPath)
-
-      fs.mkdirSync(dir, { recursive: true }, (err) => {
-          if (err) {
-              throw err;
-          }
-      });
-
-      const data = fs.readFileSync(oldPath)
-
-      fs.writeFileSync(newPath, data, function(err){
-          res.status(501).send('Couldnt create album');
-          return;
-      })
-
-      //    const obj = JSON.parse(fs.readFileSync(path.resolve(dir2, fname), 'utf8'));
-
-      let libraryJson = readJSON(picture-library.json);
-
-      //let libraryJson = JSON.parse(fs.readFileSync(path.resolve('app-data', 'library/' + appJson), 'utf8'));
-
-      // console.log(libraryJson.albums);
-
-      let albumObj = {
-          id:  uniqueId(),
-          title: title,
-          comment: fields.albumComment.trim().replace(' ', '-').replace(/(\s|-|_|~)+/g, '-').toLowerCase(),
-          path: dir,
-          headerImage: newPath,
-          pictures: [],
-      };
-
-      libraryJson.albums.push(albumObj);
-
-      fs.writeFileSync(libraryJsonPath, JSON.stringify(libraryJson), function(err) {
-          // Todo: remove album header picture and directory in case of an error
-          res.sendStatus(501);
-          return;
-      });
-      res.sendStatus(200);
-  });
-});
-*/
-
 app.post('/api/newalbum', (req, res) => {
   const form = formidable();
 
@@ -105,48 +42,31 @@ app.post('/api/newalbum', (req, res) => {
     }
     console.log('POST body:', fields);
 
-    let albumStruct = {};
-    directoryPath = [];
-    imagePath = [];
+    let jason = {};
 
     if (fileExists(appJson))
-      albumStruct = readJSON(appJson);
+      jason = readJSON(appJson);
 
-    //get the data sent over from browser
+    //get the fiields sent over from browser
     const albumTitle = fields['albumTitle'];
-    const albumFile = fields['albumFile'];
-    const headerPath = path.join(appDir, 'pictures', 'album-header');
-    var title = "";
+    const albumComment = fields['albumComment'];
 
-    //Test to check that albumTitle is a string
-    if(typeof(albumTitle) === "string") {
-      title = albumTitle;
-    }
-    else if(typeof(albumTitle) === "object"){
-      title = albumTitle[0];
-    }
-    else {
-      res.sendStatus(501);
-      return;
-    }
-
-    if (albumFile != '' || albumFile != []) {
+    if(albumTitle != '') {
       //create the directory
-      const fullPath = albumDirCreate(albumFile);
+      dirCreate('pictures/' + albumTitle);
 
-      var fname;
-
-      //Store the images if the created directory
+      //Store the image in the album-header
       if (fileIsValidImage(files.albumFile)) {
-        fname = fileRelocate(files.albumFile, headerPath);
+        const fname = fileRelocate(files.albumFile, 'pictures/album-header');
       }
 
-      let jason = readJSON(appJson);
+      //update the json file
       jason.albums.push({
         id: uniqueId(),
         title: albumTitle,
-        path: fullPath,
-        headerImage: fname,
+        comment: albumComment,
+        path: 'app-data/library/pictures/galaxies/' + albumTitle,
+        headerImage: 'app-data/library/pictures/album-header/' + files.albumFile.name,
         pictures: []
       });
 
@@ -158,35 +78,16 @@ app.post('/api/newalbum', (req, res) => {
   });
 });
 
-
 app.listen(port, () =>
   console.log(`Node server listening at http://localhost:${port}`)
 );
+
+/*------------------------------------------------------ */
 
 //helper functions to check for files and directories
 function fileExists(fname) {
   const appDataDir = path.normalize(path.join(__dirname, appDir));
   return fs.existsSync(path.resolve(appDataDir, fname));
-}
-
-function albumDirCreate(title) {
-    const fullPath = path.normalize(path.join(appDir, 'pictures', title));
-
-    //loop over all directories in the path
-    const dirs = fullPath.split(path.sep); // / on mac and Linux, \\ on windows
-    let baseDir = path.join(__dirname);
-  
-    for (const appendDir of dirs) {
-  
-      baseDir = path.join(baseDir, appendDir);
-  
-      //create the directory if it does not exist
-      if (!fs.existsSync(baseDir)) {
-        console.log(`create dir ${baseDir}`)
-        fs.mkdirSync(path.resolve(baseDir));
-      }
-    }
-    return fullPath;
 }
 
 function dirCreate(fpath) {
@@ -271,7 +172,3 @@ function uniqueId() {
     const randomness = Math.random().toString(36).substring(2);
     return dateString + randomness;
 };
-function writeJSON(fname, obj) {
-    const dir = path.join(applicationDir, `/${libraryDir}`);
-    fs.writeFileSync(path.resolve(dir, fname), JSON.stringify(obj));
-}
