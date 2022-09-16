@@ -69,21 +69,21 @@ image_input.addEventListener("change", function() {
   albumTitle = option.text;
   selectedAlbumPath = `./library/pictures/${albumTitle}`.replace(/\s+/g, '-').toLowerCase();
 });
-
+var obj = JSON.parse(library);
 const imageUploadForm = document.getElementById('uploadImageForm');
 
 imageUploadForm.addEventListener('submit', async event => {
   event.preventDefault();
 
-  const obj = JSON.parse(library);
+  
 
-  obj[`pictures`].push( { 
+  obj[`albums`].push( { 
     id: { value: uniqueId(), writable: true, enumerable: true },
     title: { value: `${titleInput}`, writable: true, enumerable: true },
     comment: { value: `${descriptionInput}`, writable: true, enumerable: true },
     imgLoRes: { value: "aaa8913467~small.jpg", writable: true, enumerable: true },
     imgHiRes: { value: `${fileName}`, writable: true, enumerable: true }
-  })
+  });
 
   lib.pictureLibraryBrowser.postJSON(obj, libraryJSON);
 });
