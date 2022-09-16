@@ -1,5 +1,9 @@
 'use strict';  // Try without strict mode
 
+const urlPost = 'http://localhost:3000/api/upload/album';
+const urlJson = './app-data/library/picture-library.json';
+
+
 const addDictoryServer = document.getElementById('addDictoryServer');
 // const urlPost = 'http://localhost:3000/api/upload/album';
 // const urlJson = './app-data/library/picture-library.json';

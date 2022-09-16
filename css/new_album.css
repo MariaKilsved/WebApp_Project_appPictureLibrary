@@ -1,13 +1,15 @@
-label{
-   
-    color: lightgray;
-}
-
+/* Background color for browser */
 body{
     background-color: lightgrey;
 }
 
+/* To hide the text from label */
+label{
+    
+    color: lightgrey;
+}
 
+/*Layout*/
 section {
     position: absolute;
     top: 50%;
@@ -17,15 +19,13 @@ section {
     text-align: center;
 }
 
-input.text {
-    width: 600px;
-    border-radius: 5px;
-    height: 40px
-    
-    
-}
+/*Resizing the textbox for title*/
+.resizedTextbox {
+    width: 600px; height: 40px
+   
+    }
 
-input.submit {
+button{
     border-radius: 5px;
         background-color: black;
         color: white;
@@ -34,21 +34,14 @@ input.submit {
         
 }
 
-input.cancel {
-    border-radius: 5px;
+h3:hover{
+    cursor: pointer;
+ }
+
+ .colorChange {
     background-color: black;
     color: white;
     margin: 8px 6px;
     border-radius: 6px;
-}
-
-p.newalbum {
-    color: black;
-    text-align: center;
-    font-size: xx-large;
-    margin-bottom: 50px;
-}
-
-h3:hover{
-    cursor: pointer;
- }
+    
+    }
