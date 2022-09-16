@@ -1,111 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title>Upload picture</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
-        <link href="./css/upload_image.css" rel="stylesheet"/>
-    </head>
-    <style>
-      .content {
-        max-width: 500px;
-        margin: auto;
-      }
-      </style>
-    <body>
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="index.html">Navbar</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="index.html">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="rating_albums.html">Sort by rating</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="new_album.html">New album</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="./upload_image.html">Upload picture</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-
-        <script type="module" src="./script/upload_image.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
-        
-     
-
-        <div class="flex-container"><br><!--Behöver ta bort br-->
-                
-        <h3>Upload picture</h3><br><br><!--Behöver ta bort br-->     
-
-      <!-- <form>
-        <div class="formBox">
-          <label for="title">Title</label>
-          <input type="text" id="title" placeholder="Title" class="resizedTextbox"/>
-        </div>
-        <div class="formBox">
-          <label for="myFile">filnamn</label> <!--Behöver ta bort label från sida-->
-          <!--<input type="file" id="myFile" name="filename" class="colorChange">
-          <button type="submit" id="btn">Submit</button>
-          <button type="reset" id="btn2">Cancel</button>
-
+<head>
+  <title>Upload picture</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+  <link href="./css/upload_image.css" rel="stylesheet"/>
+</head>
+<style>
+.content {
+  max-width: 500px;
+  margin: auto;
+}
+</style>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="index.html">Navbar</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="rating_albums.html">Sort by rating</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="new_album.html">New album</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="./upload_image.html">Upload picture</a>
+          </li>
+        </ul>
       </div>
-        <div id="msg">
-            <pre></pre>
-        </div>
-    </form> -->
-    
-    <form>
+    </div>
+  </nav>
+  <script type="module" src="./script/upload_image.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+  
+  <div class="flex-container">
+    <h2>Upload picture</h2>
+    <form id="uploadImageForm" method="post">
       <div class="formBox">
-        <label for="title">Title</label>
         <input type="text" id="title" placeholder="Title" class="resizedTextbox"/>
       </div>
       <div class="formBox">
-        <label for="myFile">filnamn</label> <!--Behöver ta bort label från sida-->
+        <input type="text" id="description" placeholder="Description" class="resizedTextbox">
+      </div>
+      <div class="formBox">
+        <select id="albumSelect" name="albums">
+         <!--<option value="" disabled selected="selected">Select Album</option> --> 
+        </select>
+      </div>
+      <div class="formBox">
+        <label for="myFile">filnamn</label>
         <input type="file" id="image-input" name="filename" accept="image/jpeg, image/png, image/jpg" class="colorChange">
         <button type="submit" id="btn">Submit</button>
         <button type="reset" id="btn2">Cancel</button>
-
-    </div>
-     
-  </form>
-        <div class="flex-container2"><br><!--Behöver ta bort br-->
-          
-          <h3>Already added</h3><br><br><!--Behöver ta bort br-->
-
-          
-          
-          <form>
-          <div class="flexbox-image">
-            <div id="display-image"></div>
-          </div>
-          <!-- <label for="answerImg1" >Image1</label>
-          <input id="answerImg1" type="image" alt="First Photo" multiple onchange="myFile()" />
-          <label for="answerImg2" >Image2</label>
-          <input id="answerImg2" type="image" alt="Second Photo" multiple onchange="myFile()" />
-          <label for="answerImg3" >Image3</label>
-          <input id="answerImg3" type="image" alt="Third Photo" multiple onchange="myFile()" />
-        </div>
-        <div class="formBox">
-          <button type="submit" id="btn3">Submit</button>
-          <button type="reset" id="btn4">Cancel</button>
-        </div> -->
-        </form>
-      
       </div>
- 
     </form>
-        </div>
-    </body>
-  
+    <div class="flexbox-image">
+      <h3>Image preview</h3>
+      <div id="display-image"></div>
+    </div>
+  </div>
+</body>
 </html>

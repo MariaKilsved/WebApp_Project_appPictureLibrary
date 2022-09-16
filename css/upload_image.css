@@ -1,69 +1,67 @@
-body{
-  
+body{ 
     background-color: lightgrey;
 }
+
 label{
     background-color: lightgray;
     color: lightgray;
 }
+
 .myFile{
     background-color: black;
     color: white;
     margin: 8px 6px;
-border-radius: 6px;
+    border-radius: 6px;
 }
 
 .flex-container {
-    
-    justify-content: space-around;
+    justify-content: center;
     text-align: center;
-    
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
 }
 
-.flex-container2{
-    justify-content: space-around;
-    text-align: center;
-     
-}
-
- h3:hover{
+ h2:hover{
     cursor: pointer;
- }
+}
 
 button{
-background-color: black;
-color: white;
-margin: 8px 6px;
-border-radius: 6px;
+    background-color: black;
+    color: white;
+    margin: 8px 6px;
+    border-radius: 6px;
 }
    
-
-
 input {
-background-color: white;
-color: black;
-margin: 8px 6px;
-border-radius: 6px;
-
+    background-color: white;
+    color: black;
+    margin: 8px 6px;
+    border-radius: 6px;
 }
 
 .resizedTextbox {
-width: 600px; height: 40px
-
+    width: 600px; height: 40px
 }
 
 .colorChange {
-background-color: black;
-color: white;
-margin: 8px 6px;
-border-radius: 6px;
+    background-color: black;
+    color: white;
+    margin: 8px 6px;
+    border-radius: 6px;
+}
 
+.flexbox-image {
+    margin-top: 25px;
 }
 /*Denna är för att få upp bild tillfäligt på browsern*/
 #display-image{
-    width: 400px;
-    height: 225px;
-    border: 1px solid black;
+    width: 600px;
+    height: 300px;
     background-position: center;
     background-size: cover;
+    margin: auto;
   }
