@@ -28,7 +28,7 @@ addDictoryServer.addEventListener('submit', async event => {
                 `${data}`);
         }
         else {
-            alert("Transmission error");
+            alert(`Failed to recieved data from server: ${response.status}`);
         }
         console.log(result);
     }

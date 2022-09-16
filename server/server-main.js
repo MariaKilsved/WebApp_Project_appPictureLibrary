@@ -3,7 +3,7 @@ const path = require('path');
 const fs = require('fs');
 
 const express = require('express');
-//const formidable = require('formidable');
+const formidable = require('formidable');
 const cors = require('cors');
 
 const app = express();
