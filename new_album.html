@@ -43,18 +43,19 @@
 
   <section>
     <h3 class="newalbum">New Album</h3><br><br>
-    <form id='addDictoryServer' action="/api/upload/album" enctype="multipart/form-data" method="post">     
+    <form id='addNewAlbum' method="post">     
     
       <label for="album">Album Title</label>
-      <input type="title" name="album" placeholder="Enter album name here..." id="album" class="resizedTextbox"/><br><br>
+      <input type="text" name="albumTitle" placeholder="Enter album name here..." id="albumTitle" class="resizedTextbox"/><br><br>
 
       <!-- <label for="albumC">Comment Description</label>
       <input type="text" name="albumComment" id="albumC" placeholder="Enter description here..." class="resizedTextbox"/><br><br> -->
 
       <label for="albumFile"> Fil</label>
-      <input type="file" id="albumFile" multiple="multiple" class="colorChange"/>
-      <button type="submit" id="btnS">Submit</button>
+      <input type="file" id="albumFile" name="albumFile" class="colorChange"/>
+      <input type="submit" class="submit-btn" id="btnS"/>
       <button type="reset" id="btnC">Cancel</button>
+
     </form>
   </section>
   <script type="module" src="./script/new_album.js"></script>
