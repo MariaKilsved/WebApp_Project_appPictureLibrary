@@ -115,59 +115,105 @@ function readJSON(fname) {
 
 //DETTA ÄR TILLLAGT NUUUUU
 
-const libraryDir = "app-data";
+// const express = require('express');
+// const formidable = require('formidable');
+// const path = require("path");
+// const fs = require("fs");
+// const cors = require('cors');
+
+const libraryDir = "app-data/library/album";
 const applicationDir = path.resolve('./');
 
-
-//const app = express();
+const libraryJsonPath = './app-data/library/picture-library.json';
+// const app = express();
 
 //To get past cors policy
 //https://www.npmjs.com/package/cors
 //https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS
-app.use(cors({
-    origin: '*'
-}));
+app.use(cors());
 
 app.listen(3000, () => {
     console.log('Server listening on http://localhost:3000 ...');
 });
 
-
 //Post request
-app.post('/api/upload', (req, res) => {
+app.post('/api/upload/album', (req, res) => {
 
     //Creates a formidable object of the incoming data
     let form = new formidable.IncomingForm();
     form.parse(req, function (err, fields, files) {
 
-        //Creates a directory with the name of the title that the user chose
-        fs.mkdirSync(path.resolve(`app-data/library/pictures/${fields.album}`));
+        // fs.mkdirSync(path.resolve(`app-data/library/pictures/${fields.title}`));
 
-        //Files old path when uploaded with formidable
-        let oldPath = files.image.filepath;
+        let newName = files.myImage.originalFilename.trim().replace(' ', '-').replace(/(\s|-|_|~)+/g, '-').toLowerCase();
+        let oldPath = files.myImage.filepath;
+        let title = fields.title.trim().replace(' ', '-').replace(/(\s|-|_|~)+/g, '-').toLowerCase();
+        const dir = `app-data/library/pictures/${title}`;
 
-        //Puts the file in the new path
-         let newPath = path.resolve('appdata/library/pictures/' + files.image.originalFilename);
+        let newPath = './app-data/library/pictures/album-header/' +  newName;
 
-        //This is what path.resolve fixes, you don't have to write the full dirname
-        //let newPath = 'C:\\Users\\alexa\\OneDrive\\Dokument\\GitHub\\WebApp_Project_appPictureLibrary\\server\\app-data\\library\\pictures\\albumheaderimage\\' + files.image.originalFilename;
+        console.log(newPath)
 
-        fs.rename(oldPath, newPath, function (err) {
-            if (err) throw err;
-            res.write('File uploaded and moved!');
-            res.end();
-
+        fs.mkdirSync(dir, { recursive: true }, (err) => {
+            if (err) {
+                throw err;
+            }
         });
 
-        //Writes image info to albumCache.json to later unpack and use
-        writeJSON('picture-library.json', {err, fields, files});
-        res.json({ fields, files });
+        const data = fs.readFileSync(oldPath)
+
+        fs.writeFileSync(newPath, data, function(err){
+            res.status(501).send('Couldnt create album');
+            return;
+        })
+
+        let libraryJson = JSON.parse(fs.readFileSync(path.resolve('app-data', 'library/' + 'picture-library.json'), 'utf8'));
+
+        // libraryJson = JSON.parse(path.resolve(albumHeaderDir, libraryJsonPath));
+        // console.log(libraryJson.albums);
+
+        let albumObj = {
+            id:  uniqueId(),
+            title: title,
+            comment: fields.albumComment.trim().replace(' ', '-').replace(/(\s|-|_|~)+/g, '-').toLowerCase(),
+            path: dir,
+            headerImage: newPath,
+            pictures: [],
+        };
+
+        libraryJson.albums.push(albumObj);
+
+        fs.writeFileSync(libraryJsonPath, JSON.stringify(libraryJson), function(err) {
+            // Todo: remove album header picture and directory in case of an error
+            res.sendStatus(501);
+            return;
+        });
+        res.sendStatus(200);
     });
 });
 
 
+
+//Writes image info to albumCache.json to later unpack and use
+// writeJSON('albumCache.json', {err, fields, files});
+// res.json({ fields, files });
+
 //Converts file info to JSON
+
+
+function uniqueId() {
+    const dateString = Date.now().toString(36);
+    const randomness = Math.random().toString(36).substring(2);
+    return dateString + randomness;
+};
 function writeJSON(fname, obj) {
     const dir = path.join(applicationDir, `/${libraryDir}`);
     fs.writeFileSync(path.resolve(dir, fname), JSON.stringify(obj));
+}
+
+function readJSON(fname) {
+    const dir2 = path.join(applicationDir, `/${libraryDir}`);
+
+    const obj = JSON.parse(fs.readFileSync(path.resolve(dir2, fname), 'utf8'));
+    return obj;
 }
