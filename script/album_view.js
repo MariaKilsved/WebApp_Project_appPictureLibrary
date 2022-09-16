@@ -17,8 +17,8 @@ library = await lib.pictureLibraryBrowser.fetchJSON(libraryJSON);  //reading lib
 //Obtain album from URL:
 const albumQuery = window.location.search.substring(1);
 const searchParams = new URLSearchParams(albumQuery);
-let isRatingAlbum = false;
-let isAlbum = false;
+var isRatingAlbum = false;
+var isAlbum = false;
 if(searchParams.has('album')) {
   isAlbum = true;
 }
@@ -57,7 +57,7 @@ for (const album of library.albums) {
               picture.id, 
               picture.title, 
               picture.comment
-            );
+          );
         }
       }
     }
@@ -69,7 +69,7 @@ for (const album of library.albums) {
 
   //Event listener for checking if button should be enabled or not
   let allCheckboxes = document.querySelectorAll('.toggler-wrapper');
-  allCheckboxes.forEach(addEventListener("click", enableRedirectSelection));
+  allCheckboxes.forEach(x => addEventListener("click", enableRedirectSelection));
 
   /*---------------*/
   /*    More CSS   */
@@ -215,22 +215,27 @@ function enableRedirectSelection() {
 
 //onclick to redirect to slideshow
 function redirectAll() {
-  //Obtain album from URL:
   const albumQuery = window.location.search.substring(1);
-  window.location.href = `slideshow.html?album=${albumQuery}`;
+  const searchParams = new URLSearchParams(albumQuery);
+
+  if(searchParams.has('album')) {
+    window.location.href = `slideshow.html?album=${searchParams.get('album')}`;
+  }
+  else if(searchParams.has('stars')) {
+    window.location.href = `slideshow.html?stars=${searchParams.get('stars')}`;
+  }  
 }
 
 //onclick to redirect to slideshow, but only with selected images
 function redirectSelection() {
-  const albumQuery = window.location.search.substring(1);
-  let searchParams = new URLSearchParams(`album=${albumQuery}`);
   let checkboxes = document.querySelectorAll('input[name=check]:checked');
+  let newSearchParams = new URLSearchParams('');
 
   for(let i = 0; i < checkboxes.length; i++) {
-      searchParams.append('id', checkboxes[i].value);
+    newSearchParams.append('id', checkboxes[i].value);
   }
 
-  window.location.href = `slideshow.html?${searchParams.toString()}`;
+  window.location.href = `slideshow.html?${newSearchParams.toString()}`;
 
 }
 

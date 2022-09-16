@@ -17,17 +17,51 @@ library = await lib.pictureLibraryBrowser.fetchJSON(libraryJSON);  //reading lib
 //Manage query
 const query = window.location.search.substring(1);
 const searchParams = new URLSearchParams(query);
-const albums = searchParams.getAll('album');
-const ids = searchParams.getAll('id');
+var isRatingAlbum = false;
+var isAlbum = false;
 
-//Count rendered images
+if(searchParams.has('album')) {
+  isAlbum = true;
+}
+else if(searchParams.has('stars')) {
+  isRatingAlbum = true;
+}
+
+//Counter for rendered images
 var counter = 0;
 
-//Render stand-alone images found in query
-if(albums.length > 0 && ids.length > 0) {
-  for (const album of library.albums) {
-    if(albums.includes(album.id)) {
-      for (const picture of album.pictures) {
+//Big bad loop of rendering
+for (const album of library.albums) {
+  if(isAlbum && album.id == searchParams.get('album')) {
+    for (const picture of album.pictures) {
+      counter++;
+      renderImage(
+        `${album.path}/${picture.imgLoRes}`, 
+        `${album.path}/${picture.imgHiRes}`, 
+        picture.id, 
+        picture.title,
+        counter
+      );
+    }
+  }
+  else {
+    for (const picture of album.pictures) {
+      if(isRatingAlbum && 
+        picture.rating !== null && 
+        picture.rating !== undefined && 
+        picture.rating !== NaN && 
+        picture.rating == searchParams.get('stars')) {
+          counter++;
+          renderImage(
+            `${album.path}/${picture.imgLoRes}`, 
+            `${album.path}/${picture.imgHiRes}`, 
+            picture.id, 
+            picture.title,
+            counter
+          );
+        }
+      else {
+        let ids = searchParams.getAll('id');
         if(ids.includes(picture.id)) {
           counter++;
           renderImage(
@@ -38,22 +72,6 @@ if(albums.length > 0 && ids.length > 0) {
             counter
           );
         }
-      }
-    }
-  }
-}//Render entire albums found in query
-else if(albums.length > 0) {
-  for (const album of library.albums) {
-    if(albums.includes(album.id)) {
-      for (const picture of album.pictures) {
-        counter++;
-        renderImage(
-          `${album.path}/${picture.imgLoRes}`, 
-          `${album.path}/${picture.imgHiRes}`, 
-          picture.id, 
-          picture.title,
-          counter
-        );
       }
     }
   }
