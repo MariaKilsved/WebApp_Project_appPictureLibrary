@@ -69,20 +69,35 @@ image_input.addEventListener("change", function() {
   albumId = option.value;
   albumTitle = option.text;
   selectedAlbumPath = `./library/pictures/${albumTitle}`.replace(/\s+/g, '-').toLowerCase();
+
+  for (const album in obj) {
+    if (Object.hasOwnProperty.call(obj, album)) {
+      const element = obj[album];
+      for (const item of element) {
+        if (item.id === albumId) {
+          console.log(item.id);
+          pic = item.pictures;
+        }
+      }
+      console.log(element);
+    }
+  };
 });
 
 let obj = await lib.pictureLibraryBrowser.fetchJSON(libraryJSON);
+let pic;
 const imageUploadForm = document.getElementById('uploadImageForm');
+
+
 
 imageUploadForm.addEventListener('submit', async event => {
   event.preventDefault();
-
-  obj[`albums`].push( { 
-    id: { value: proto.uniqueId(), writable: true, enumerable: true },
-    title: { value: `${titleInput}`, writable: true, enumerable: true },
-    comment: { value: `${descriptionInput}`, writable: true, enumerable: true },
-    imgLoRes: { value: "aaa8913467~small.jpg", writable: true, enumerable: true },
-    imgHiRes: { value: `${fileName}`, writable: true, enumerable: true }
+  pic.push( { 
+    id: proto.uniqueId(),
+    title: `${titleInput}`,
+    comment:`${descriptionInput}`,
+    imgLoRes:`${fileName}`,
+    imgHiRes: `${fileName}`
   });
 
 //  lib.pictureLibraryBrowser.postJSON(obj, libraryJSON);
