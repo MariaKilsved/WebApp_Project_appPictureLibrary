@@ -1,8 +1,9 @@
 'use strict';  // Try without strict mode
 
 import * as lib from '../model/picture-library-browser.js';
+import * as proto from '../model/picture-album-prototypes.js';
 
-const libraryJSON ="picture-library.json";
+const libraryJSON ='picture-library.json';
 let library;  //Global varibale, Loaded async from the current server in window.load event
 
 
@@ -69,23 +70,49 @@ image_input.addEventListener("change", function() {
   albumTitle = option.text;
   selectedAlbumPath = `./library/pictures/${albumTitle}`.replace(/\s+/g, '-').toLowerCase();
 });
-var obj = JSON.parse(library);
+
+let obj = await lib.pictureLibraryBrowser.fetchJSON(libraryJSON);
 const imageUploadForm = document.getElementById('uploadImageForm');
 
 imageUploadForm.addEventListener('submit', async event => {
   event.preventDefault();
 
-  
-
   obj[`albums`].push( { 
-    id: { value: uniqueId(), writable: true, enumerable: true },
+    id: { value: proto.uniqueId(), writable: true, enumerable: true },
     title: { value: `${titleInput}`, writable: true, enumerable: true },
     comment: { value: `${descriptionInput}`, writable: true, enumerable: true },
     imgLoRes: { value: "aaa8913467~small.jpg", writable: true, enumerable: true },
     imgHiRes: { value: `${fileName}`, writable: true, enumerable: true }
   });
 
-  lib.pictureLibraryBrowser.postJSON(obj, libraryJSON);
+//  lib.pictureLibraryBrowser.postJSON(obj, libraryJSON);
+
+  try {
+    const url = 'http://localhost:3000/api/upload';
+
+    const response = await fetch(url, {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify(obj)
+
+      });
+    if(response.ok) {
+        console.log("Request successful");
+        const responeText = await response.text();
+        console.log(responeText);
+    }
+    else {
+        //typcially you would log an error instead
+        console.log(`Failed to recieved data from server: ${res.status}`);
+        alert(`Failed to recieved data from server: ${res.status}`);
+    }
+  }
+  catch(error) {
+    console.log("Failed to receive data from server");
+    //console.log(`Failed to recieve data from server: ${err.message}`);
+    alert("Failed to recieve data from server");
+    //alert(`Failed to recieve data from server: ${err.message}`);
+  }
 });
 
 
