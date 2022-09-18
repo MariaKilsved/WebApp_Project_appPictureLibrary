@@ -51,13 +51,16 @@ app.post('/api/newalbum', (req, res) => {
     const albumTitle = fields['albumTitle'];
     const albumComment = fields['albumComment'];
 
+    //Get original file name
+    const pictureName = files.albumFile.originalFilename;
+
     if(albumTitle != '') {
       //create the directory
       dirCreate('pictures/' + albumTitle);
 
       //Store the image in the album-header
       if (fileIsValidImage(files.albumFile)) {
-        const fname = fileRelocate(files.albumFile, 'pictures/album-header');
+        fileRelocate(files.albumFile, 'pictures/album-header');
       }
 
       //update the json file
@@ -66,7 +69,7 @@ app.post('/api/newalbum', (req, res) => {
         title: albumTitle,
         comment: albumComment,
         path: 'app-data/library/pictures/galaxies/' + albumTitle,
-        headerImage: 'app-data/library/pictures/album-header/' + files.albumFile.name,
+        headerImage: 'app-data/library/pictures/album-header/' + pictureName,
         pictures: []
       });
 
