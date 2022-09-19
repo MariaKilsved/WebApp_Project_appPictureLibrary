@@ -45,19 +45,19 @@
     <h2>Upload picture</h2>
     <form id="uploadImageForm" method="post">
       <div class="formBox">
-        <input type="text" id="title" placeholder="Title" class="resizedTextbox"/>
+        <input type="text" id="title" placeholder="Title" name="title" class="resizedTextbox"/>
       </div>
       <div class="formBox">
-        <input type="text" id="description" placeholder="Description" class="resizedTextbox">
+        <input type="text" id="description" name="description" placeholder="Description" class="resizedTextbox">
       </div>
       <div class="formBox">
-        <select id="albumSelect" name="albums">
+        <select id="albumSelect" name="albumSelect">
          <!--<option value="" disabled selected="selected">Select Album</option> --> 
         </select>
       </div>
       <div class="formBox">
         <label for="myFile">filnamn</label>
-        <input type="file" id="image-input" name="filename" accept="image/jpeg, image/png, image/jpg" class="colorChange">
+        <input type="file" id="imageinput" name="imageinput" accept="image/jpeg, image/png, image/jpg" class="colorChange">
         <button type="submit" id="btn">Submit</button>
         <button type="reset" id="btn2">Cancel</button>
       </div>

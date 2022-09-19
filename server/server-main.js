@@ -33,6 +33,57 @@ app.post('/api/upload', (req, res) => {
   res.json(b);
 });
 
+app.post('/api/newimage', (req, res) => {
+  const form = formidable();
+
+  form.parse(req, (err, fields, files) => {
+    if (err) {
+      return;
+    }
+    console.log('POST body:', fields);
+
+    let obj = {};
+    let pic;
+
+    if (fileExists(appJson)) {
+      obj = readJSON(appJson);
+    }
+
+    const imageTitle = fields['title'];
+    const imageDesc = fields['description'];
+    const imgPath = fields['albumSelect'].toLowerCase();
+    const fileName = files.imageinput.originalFilename.split("\\").pop();
+
+    if (fileIsValidImage(files.imageinput)) {
+      fileRelocate(files.imageinput, 'pictures/' + imgPath);
+    }
+
+    //update the json file
+    for (const album in obj) {
+      if (Object.hasOwnProperty.call(obj, album)) {
+        const element = obj[album];
+        for (const item of element) {
+          if (item.title.toLowerCase() === imgPath) {
+            console.log(item.id);
+            pic = item.pictures;
+          }
+        }
+        console.log(element);
+      }
+    };
+    pic.push({
+      id: proto.uniqueId(),
+      title: imageTitle,
+      comment: imageDesc,
+      imgLoRes: fileName,
+      imgHiRes: fileName
+    });
+
+    writeJSON(appJson, jason);
+    res.sendStatus(200);
+  });
+});
+
 app.post('/api/newalbum', (req, res) => {
   const form = formidable();
 

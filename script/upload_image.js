@@ -42,17 +42,9 @@ function getAlbumTitle(data) {
   } 
 };
 
-let titleInput;
-let descriptionInput;
-let fileName;
-let albumInput;
-let option;
-let albumId;
-let albumTitle;
-let selectedAlbumPath;
 
 /*Denna kod är för att få upp bild tillfäligt på browsern*/ 
-const image_input = document.querySelector("#image-input");
+const image_input = document.querySelector("#imageinput");
 image_input.addEventListener("change", function() {
   const reader = new FileReader();
   reader.addEventListener("load", () => {
@@ -60,7 +52,45 @@ image_input.addEventListener("change", function() {
     document.querySelector("#display-image").style.backgroundImage = `url(${uploaded_image})`;
   });
   reader.readAsDataURL(this.files[0]);
-  
+});
+
+const urlPost = 'http://localhost:3000/api/newimage';
+const urlJson = './app-data/library/picture-library.json';
+const imageUploadForm = document.getElementById('uploadImageForm');
+
+imageUploadForm.addEventListener('submit', async event => {
+  event.preventDefault();
+
+  //Create the key/value pairs used in the form
+  const formData = new FormData(imageUploadForm);
+  try {
+      //send the data using post and await the reply
+      const response = await fetch(urlPost, {
+          method: 'post',
+          body: formData
+      });
+      const result = await response.text();
+
+      if (response.ok) {
+
+          const response = await fetch(urlJson);
+          const data = await response.text();
+
+          alert(`The image has been submitted successfully.\n`+
+              `${data}`);
+      }
+      else {
+          alert(`Failed to recieve data from server: ${response.status}`);
+      }
+      console.log(result);
+  }
+  catch {
+      alert("Transmission error");
+  }
+})
+
+
+  /*
   titleInput = document.getElementById('title').value;
   descriptionInput = document.getElementById('description').value;
   fileName = image_input.value.split("\\").pop();
@@ -86,12 +116,19 @@ image_input.addEventListener("change", function() {
 
 let obj = await lib.pictureLibraryBrowser.fetchJSON(libraryJSON);
 let pic;
+const fileToSave = document.getElementById('image-input').files[0];
 const imageUploadForm = document.getElementById('uploadImageForm');
-
-
 
 imageUploadForm.addEventListener('submit', async event => {
   event.preventDefault();
+
+  let formData = new FormData();
+  formData.append("fileToSave",fileToSave);
+  await fetch (`${selectedAlbumPath}`, {
+    method: "POST",
+    body: formData
+  });
+
   pic.push( { 
     id: proto.uniqueId(),
     title: `${titleInput}`,
@@ -128,4 +165,4 @@ imageUploadForm.addEventListener('submit', async event => {
     alert("Failed to recieve data from server");
     //alert(`Failed to recieve data from server: ${err.message}`);
   }
-});
+});*/
