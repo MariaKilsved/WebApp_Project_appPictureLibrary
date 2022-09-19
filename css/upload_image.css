@@ -54,14 +54,15 @@ input {
     border-radius: 6px;
 }
 
-.flexbox-image {
+/*Denna kod behövs ej!!*/
+/* .flexbox-image {
     margin-top: 25px;
 }
-/*Denna är för att få upp bild tillfäligt på browsern*/
+/*Denna är för att få upp bild tillfäligt på browsern
 #display-image{
     width: 600px;
     height: 300px;
     background-position: center;
     background-size: cover;
     margin: auto;
-  }
+  } */
