@@ -42,7 +42,7 @@ function renderAlbum(src, id, title) {
 
   //<a target="_self" href="album_view.html" >
   const a = document.createElement('a');
-  a.href = `album_view.html?${id}`;
+  a.href = `album_view.html?album=${id}`;
   a.target = "_self";
   a.dataset.albumId = id;
 

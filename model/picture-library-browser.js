@@ -51,8 +51,8 @@ class pictureLibraryBrowser extends lib.pictureLibrary {
             }
             else {
                 //typcially you would log an error instead
-                console.log(`Failed to recieved data from server: ${res.status}`);
-                alert(`Failed to recieved data from server: ${res.status}`);
+                console.log(`Failed to recieved data from server: ${response.status}`);
+                alert(`Failed to recieved data from server: ${response.status}`);
             }
         }
         catch(error) {
