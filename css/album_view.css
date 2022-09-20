@@ -74,14 +74,24 @@ body {
 
 .two-columns .column {
     width: 50%;
+    width: calc(50% - 20px);
 }
 
 .three-columns .column {
     width: 33%;
+    width: calc(33% - 20px);
 }
 
 .four-columns .column {
     width: 25%;
+    width: calc(25% - 20px);
+}
+
+.ellipsis-clip {
+    max-height: 84px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .form-check-input:checked {
