@@ -61,6 +61,7 @@ h2:hover{
         width: 100%;
         justify-content: center;
         flex-direction: column;
+        justify-content: space-around;
         
        
     }
