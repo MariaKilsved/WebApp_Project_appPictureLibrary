@@ -7,22 +7,12 @@ label{
     color: lightgray;
 }
 
-.myFile{
-    background-color: black;
-    color: white;
-    margin: 8px 6px;
-    border-radius: 6px;
-}
-
 .flex-container {
-    justify-content: center;
-    text-align: center;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-right: -50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
+        /*Layout*/
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        flex-direction: column;
 }
 
  h2:hover{
@@ -44,8 +34,17 @@ input {
 }
 
 .resizedTextbox {
-    width: 600px; height: 40px
+    max-width: 100%; height: 40px;
+    width: 95%;
 }
+
+@media (min-width: 675px) {
+   
+    .resizedTextbox {
+        width: 600px; height: 40px;
+       
+        }
+    }
 
 .colorChange {
     background-color: black;
@@ -53,11 +52,42 @@ input {
     margin: 8px 6px;
     border-radius: 6px;
 }
+.flex-container {
+    /*Layout*/
+display: flex;
+width: 100%;
+justify-content: center;
+flex-direction: column;
 
+
+}
+
+.uploadNewImageForm{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items:center;
+
+}
+
+.uploadImageForm{
+display: flex;
+justify-content: center;
+flex-direction: column;
+align-items:center;
+
+}
+
+.formBox-Row{
+flex-direction: row;
+}
 
  .flexbox-image {
-    margin-top: 25px;
-}
+    display: flex;
+justify-content: center;
+flex-direction: column;
+align-items:center;
+} 
 
 
 /*Denna är för att få upp bild tillfäligt på browsern*/
@@ -68,3 +98,5 @@ input {
     background-size: cover;
     margin: auto;
   } 
+
+  
