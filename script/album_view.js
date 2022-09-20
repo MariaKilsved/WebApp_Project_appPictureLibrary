@@ -90,7 +90,7 @@ function renderImage(loResSrc, hiResSrc, tag, title, comment, iterator) {
       </a>
       <ul class="list-group list-group-flush">
         <li class="list-group-item">....</li>
-        <li class="list-group-item">....</li>
+        <li class="list-group-item ellipsis-clip">....</li>
         <li class="list-group-item">
           <div class="form-check form-switch d-flex justify-content-between">
             <input class="form-check-input order-2" type="checkbox" id="..." name="check" role="switch" id="...">
@@ -137,7 +137,7 @@ function renderImage(loResSrc, hiResSrc, tag, title, comment, iterator) {
   
     //<li class="list-group-item">....</li>
     const li2 = document.createElement('li');
-    li2.className = `list-group-item`;
+    li2.className = `list-group-item ellipsis-clip`;
     const text2 = document.createTextNode(comment);
     li2.appendChild(text2);
   
@@ -219,7 +219,7 @@ function renderImage(loResSrc, hiResSrc, tag, title, comment, iterator) {
   
     //<li class="list-group-item">....</li>
     const li2_2 = document.createElement('li');
-    li2_2.className = `list-group-item`;
+    li2_2.className = `list-group-item ellipsis-clip`;
     const text2_2 = document.createTextNode(comment);
     li2_2.appendChild(text2_2);
   
@@ -307,7 +307,7 @@ function renderImage(loResSrc, hiResSrc, tag, title, comment, iterator) {
   
     //<li class="list-group-item">....</li>
     const li2_3 = document.createElement('li');
-    li2_3.className = `list-group-item`;
+    li2_3.className = `list-group-item ellipsis-clip`;
     const text2_3 = document.createTextNode(comment);
     li2_3.appendChild(text2_3);
   
@@ -399,7 +399,7 @@ function renderImage(loResSrc, hiResSrc, tag, title, comment, iterator) {
   
     //<li class="list-group-item">....</li>
     const li2_4 = document.createElement('li');
-    li2_4.className = `list-group-item`;
+    li2_4.className = `list-group-item ellipsis-clip`;
     const text2_4 = document.createTextNode(comment);
     li2_4.appendChild(text2_4);
   
