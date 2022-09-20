@@ -16,9 +16,6 @@ window.addEventListener('DOMContentLoaded', async () => {
     library = await lib.pictureLibraryBrowser.fetchJSON(libraryJSON);  //reading library from JSON on local server 
     //library = lib.pictureLibraryBrowser.createFromTemplate();  //generating a library template instead of reading JSON
 
-    //Obtain id from URL:
-    let pictureQuery = window.location.search.substring(1);
-
     for (const album of library.albums) {
         for (const picture of album.pictures) {
             let pictureQuery = window.location.search.substring(1);
@@ -103,20 +100,21 @@ function renderRating(rating) {
     if (rating === null || rating === undefined || rating === 0) {
         return;
     }
+
     switch (rating) {
-        case 1:
+        case '1':
             document.querySelector('#star-1').checked = true;
             break;
-        case 2:
+        case '2':
             document.querySelector('#star-2').checked = true;
             break;
-        case 3:
+        case '3':
             document.querySelector('#star-3').checked = true;
             break;
-        case 4:
+        case '4':
             document.querySelector('#star-4').checked = true;
             break;
-        case 5:
+        case '5':
             document.querySelector('#star-5').checked = true;
             break;
         default:
