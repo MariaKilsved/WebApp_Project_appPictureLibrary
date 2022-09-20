@@ -42,8 +42,8 @@
     crossorigin="anonymous"></script>
 
   <section class="flex-container" >
-    <h2 class="newalbum">New Album</h2><br><br>
-    <form id='addNewAlbum' method="post">     
+    <h2 class="newalbum">New Album</h2>
+    <form class="addNewAlbum" id='addNewAlbum' method="post">     
     
       <label for="album">Album Title</label>
       <input type="text" name="albumTitle" placeholder="Enter album name here..." id="albumTitle" class="resizedTextbox"/>
@@ -51,10 +51,14 @@
       <label for="albumC">CommentA</label>
       <input type="text" name="albumComment" id="albumC" placeholder="Enter description here..." class="resizedTextbox"/><br>
 
-      <label for="albumFile"> Fil</label><br>
-      <input type="file" id="albumFile" name="albumFile" class="colorChange"/>
-      <input type="submit" class="submit-btn" id="btnS" value="Submit"/>
-      <button type="reset" id="btnC">Cancel</button>
+      <div class="flex-Row">
+        <label for="albumFile"> Fil</label>
+        <input type="file" id="albumFile" name="albumFile" class="colorChange"/>
+        
+        <input type="submit" class="submit-btn" id="btnS" value="Submit"/>
+        <button type="reset" id="btnC">Cancel</button>
+      </div>
+      
 
     </form>
   </section>

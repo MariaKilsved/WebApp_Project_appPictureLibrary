@@ -43,9 +43,19 @@ h2:hover{
 
 /*Resizing the textbox for title*/
 .resizedTextbox {
-    width: 600px; height: 40px
+    max-width: 100%; height: 40px;
+    width: 95%; 
    
     }
+
+@media (min-width: 675px) {
+   
+.resizedTextbox {
+    width: 600px; height: 40px;
+   
+    }
+}
+
 
 /*Changing color of input file*/
  .colorChange {
@@ -55,63 +65,25 @@ h2:hover{
     border-radius: 6px;
     
     }
-    @media (min-width: 320px) {
-        .flex-container {
+       
+    .flex-container {
             /*Layout*/
+        display: flex;
+        width: 100%;
         justify-content: center;
-        text-align: center;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        margin-right: -50%;
-        transform: translate(-50%, -50%);
-        text-align: center;
+        flex-direction: column;
+        
+       
     }
 
+    .addNewAlbum{
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items:center;
         
     }
 
-@media (min-width: 769px) {
-    .flex-container {
-        /*Layout*/
-    justify-content: center;
-    text-align: center;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-right: -50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-}
-    
-}
-
-@media (min-width: 1025px) {
-   /*Layout*/
-.flex-container {
-    justify-content: center;
-    text-align: center;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-right: -50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-}
-   
-}
-
-@media (min-width: 1201px) {
-   /*Layout*/
-.flex-container {
-    justify-content: center;
-    text-align: center;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-right: -50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-}
-   
+.flex-Row{
+    flex-direction: row;
 }
