@@ -72,14 +72,14 @@ app.post('/api/newimage', (req, res) => {
       }
     };
     pic.push({
-      id: proto.uniqueId(),
+      id: uniqueId(),
       title: imageTitle,
       comment: imageDesc,
       imgLoRes: fileName,
       imgHiRes: fileName
     });
 
-    writeJSON(appJson, jason);
+    writeJSON(appJson, obj);
     res.sendStatus(200);
   });
 });
