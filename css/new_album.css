@@ -9,23 +9,11 @@ label{
     color: lightgrey;
 }
 
-/*Layout*/
-section {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-right: -50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-}
-
-/*Resizing the textbox for title*/
-.resizedTextbox {
-    width: 600px; height: 40px
-   
-    }
-
-button, .submit-btn {
+h2:hover{
+    cursor: pointer;
+ }
+/*Button borders and color*/
+ button, .submit-btn {
     border-radius: 5px;
         background-color: black;
         color: white;
@@ -33,11 +21,32 @@ button, .submit-btn {
         border-radius: 6px;
         
 }
+/*Input colors and border*/
+ input {
+    background-color: white;
+    color: black;
+    margin: 8px 6px;
+    border-radius: 6px;
+}
 
-h3:hover{
-    cursor: pointer;
- }
 
+/*Resizing the textbox for title*/
+.resizedTextbox {
+    max-width: 100%; height: 40px;
+    width: 95%; 
+   
+    }
+
+@media (min-width: 675px) {
+   
+.resizedTextbox {
+    width: 600px; height: 40px;
+   
+    }
+}
+
+
+/*Changing color of input file*/
  .colorChange {
     background-color: black;
     color: white;
@@ -45,3 +54,34 @@ h3:hover{
     border-radius: 6px;
     
     }
+        /*Layout*/
+    .flex-container {
+           
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        flex-direction: column;
+        justify-content: space-around;
+        
+       
+    }
+
+    .newalbum{
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items:center;
+    }
+
+    .addNewAlbum{
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items:center;
+        
+    }
+
+.flex-Row{
+    flex-direction: row;
+}
+
