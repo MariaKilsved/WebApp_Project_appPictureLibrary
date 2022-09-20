@@ -51,7 +51,7 @@ app.post('/api/newimage', (req, res) => {
 
     const imageTitle = fields['title'];
     const imageDesc = fields['description'];
-    const imgPath = fields['albumSelect'].toLowerCase();
+    const imgPath = fields['albumSelect'].replace(/\s+/g, '-').toLowerCase();
     const fileName = files.imageinput.originalFilename;
 
     if (fileIsValidImage(files.imageinput)) {
@@ -63,7 +63,7 @@ app.post('/api/newimage', (req, res) => {
       if (Object.hasOwnProperty.call(obj, album)) {
         const element = obj[album];
         for (const item of element) {
-          if (item.title.toLowerCase() === imgPath) {
+          if (item.title.replace(/\s+/g, '-').toLowerCase() === imgPath.replace(/\s+/g, '-').toLowerCase()) {
             console.log(item.id);
             pic = item.pictures;
           }
@@ -99,13 +99,14 @@ app.post('/api/newalbum', (req, res) => {
       jason = readJSON(appJson);
 
     //get the fiields sent over from browser
-    const albumTitle = fields['albumTitle'];
+    const origAlbumTitle = fields['albumTitle'];
+    const albumTitle = fields['albumTitle'].replace(/\s+/g, '-').toLowerCase();
     const albumComment = fields['albumComment'];
 
     //Get original file name
     const pictureName = files.albumFile.originalFilename;
 
-    if(albumTitle != '') {
+    if (albumTitle != '') {
       //create the directory
       dirCreate('pictures/' + albumTitle);
 
@@ -117,9 +118,9 @@ app.post('/api/newalbum', (req, res) => {
       //update the json file
       jason.albums.push({
         id: uniqueId(),
-        title: albumTitle,
+        title: origAlbumTitle,
         comment: albumComment,
-        path: 'app-data/library/pictures/galaxies/' + albumTitle,
+        path: 'app-data/library/pictures/' + albumTitle,
         headerImage: 'app-data/library/pictures/album-header/' + pictureName,
         pictures: []
       });
@@ -222,7 +223,7 @@ function readJSON(fname) {
 }
 
 function uniqueId() {
-    const dateString = Date.now().toString(36);
-    const randomness = Math.random().toString(36).substring(2);
-    return dateString + randomness;
+  const dateString = Date.now().toString(36);
+  const randomness = Math.random().toString(36).substring(2);
+  return dateString + randomness;
 };

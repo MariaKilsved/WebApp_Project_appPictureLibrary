@@ -28,7 +28,7 @@ addNewAlbum.addEventListener('submit', async event => {
             const response = await fetch(urlJson);
             const data = await response.text();
 
-            alert(`The image has been submitted successfully.\n`+
+            alert(`The image has been submitted successfully.\n` +
                 `${data}`);
         }
         else {

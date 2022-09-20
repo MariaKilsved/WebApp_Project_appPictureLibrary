@@ -6,36 +6,36 @@ import * as lib from '../model/picture-library-browser.js';
 
 const path = `../app-data/library/picture-library.json`;
 
-const libraryJSON ="picture-library.json";
+const libraryJSON = "picture-library.json";
 let library;  //Global varibale, Loaded async from the current server in window.load event
 
 
 //use the DOMContentLoaded, or window load event to read the library async and render the images
 window.addEventListener('DOMContentLoaded', async () => {
 
-library = await lib.pictureLibraryBrowser.fetchJSON(libraryJSON);  //reading library from JSON on local server 
-//library = lib.pictureLibraryBrowser.createFromTemplate();  //generating a library template instead of reading JSON
+    library = await lib.pictureLibraryBrowser.fetchJSON(libraryJSON);  //reading library from JSON on local server 
+    //library = lib.pictureLibraryBrowser.createFromTemplate();  //generating a library template instead of reading JSON
 
-//Obtain id from URL:
-let pictureQuery = window.location.search.substring(1);
+    //Obtain id from URL:
+    let pictureQuery = window.location.search.substring(1);
 
-for (const album of library.albums) {
-    for (const picture of album.pictures) {
-        let pictureQuery = window.location.search.substring(1);
-        if(picture.id === pictureQuery) {
-            renderImage(
-                `${album.path}/${picture.imgLoRes}`, 
-                `${album.path}/${picture.imgHiRes}`, 
-                picture.title
-            );
-            renderImageTitle(picture.title);
-            renderImageDescription(picture.comment);
-            if(picture.rating !== null && picture.rating !== undefined && picture.rating != 0) {
-                renderRating(picture.rating);
+    for (const album of library.albums) {
+        for (const picture of album.pictures) {
+            let pictureQuery = window.location.search.substring(1);
+            if (picture.id === pictureQuery) {
+                renderImage(
+                    `${album.path}/${picture.imgLoRes}`,
+                    `${album.path}/${picture.imgHiRes}`,
+                    picture.title
+                );
+                renderImageTitle(picture.title);
+                renderImageDescription(picture.comment);
+                if (picture.rating !== null && picture.rating !== undefined && picture.rating != 0) {
+                    renderRating(picture.rating);
+                }
             }
         }
     }
-  }
 })
 
 // Event listener to close the pop-up window for edit image
@@ -100,10 +100,10 @@ function renderImageDescription(description) {
 }
 
 function renderRating(rating) {
-    if(rating === null || rating === undefined || rating === 0) {
+    if (rating === null || rating === undefined || rating === 0) {
         return;
     }
-    switch(rating) {
+    switch (rating) {
         case 1:
             document.querySelector('#star-1').checked = true;
             break;
@@ -121,7 +121,7 @@ function renderRating(rating) {
             break;
         default:
             break;
-      }
+    }
 }
 
 async function setNewRating() {
@@ -134,7 +134,7 @@ async function setNewRating() {
     for (const album of library.albums) {
         for (const picture of album.pictures) {
             let pictureQuery = window.location.search.substring(1);
-            if(picture.id === pictureQuery) {
+            if (picture.id === pictureQuery) {
                 picture.rating = rating;
             }
         }
@@ -150,7 +150,7 @@ async function deleteImage() {
     for (const album of library.albums) {
         for (const picture of album.pictures) {
             let pictureQuery = window.location.search.substring(1);
-            if(picture.id === pictureQuery) {
+            if (picture.id === pictureQuery) {
                 let index = album.pictures.indexOf(picture);
                 album.pictures.splice(index, 1);
                 await lib.pictureLibraryBrowser.postJSON(library, libraryJSON);
@@ -170,7 +170,7 @@ async function renameImageTitle(e) {
     for (const album of library.albums) {
         for (const picture of album.pictures) {
             let pictureQuery = window.location.search.substring(1);
-            if(picture.id === pictureQuery) {
+            if (picture.id === pictureQuery) {
                 picture.title = titleString;
             }
         }
@@ -193,7 +193,7 @@ async function postNewDescription(e) {
     for (const album of library.albums) {
         for (const picture of album.pictures) {
             let pictureQuery = window.location.search.substring(1);
-            if(picture.id === pictureQuery) {
+            if (picture.id === pictureQuery) {
                 picture.comment = commentString;
             }
         }
