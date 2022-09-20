@@ -37,7 +37,7 @@ function getAlbumTitle(data) {
   for (const element of data) {
     option = document.createElement('option');
     option.text = element.title;
-    option.value = element.id;
+    option.value = element.title;
     dropdown.add(option);
   } 
 };
@@ -56,13 +56,13 @@ image_input.addEventListener("change", function() {
 
 const urlPost = 'http://localhost:3000/api/newimage';
 const urlJson = './app-data/library/picture-library.json';
-const imageUploadForm = document.getElementById('uploadImageForm');
+const uploadImageForm = document.getElementById('uploadImageForm');
 
-imageUploadForm.addEventListener('submit', async event => {
+uploadImageForm.addEventListener('submit', async event => {
   event.preventDefault();
 
   //Create the key/value pairs used in the form
-  const formData = new FormData(imageUploadForm);
+  const formData = new FormData(uploadImageForm);
   try {
       //send the data using post and await the reply
       const response = await fetch(urlPost, {
