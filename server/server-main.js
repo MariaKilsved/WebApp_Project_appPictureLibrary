@@ -35,7 +35,7 @@ app.post('/api/upload', (req, res) => {
 
 app.post('/api/newimage', (req, res) => {
   const form = formidable();
-
+  console.log('hello');
   form.parse(req, (err, fields, files) => {
     if (err) {
       return;
@@ -52,7 +52,7 @@ app.post('/api/newimage', (req, res) => {
     const imageTitle = fields['title'];
     const imageDesc = fields['description'];
     const imgPath = fields['albumSelect'].toLowerCase();
-    const fileName = files.imageinput.originalFilename.split("\\").pop();
+    const fileName = files.imageinput.originalFilename;
 
     if (fileIsValidImage(files.imageinput)) {
       fileRelocate(files.imageinput, 'pictures/' + imgPath);
