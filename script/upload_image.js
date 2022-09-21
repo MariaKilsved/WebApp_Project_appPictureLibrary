@@ -54,7 +54,7 @@ image_input.addEventListener("change", function () {
   reader.readAsDataURL(this.files[0]);
 });
 
-const imageinputsmallPreview = document.querySelector("#imageinputsmall");
+/*const imageinputsmallPreview = document.querySelector("#imageinputsmall");
 imageinputsmallPreview.addEventListener("change", function () {
   const reader = new FileReader();
   reader.addEventListener("load", () => {
@@ -62,16 +62,24 @@ imageinputsmallPreview.addEventListener("change", function () {
     document.querySelector("#display-imagesmall").style.backgroundImage = `url(${uploaded_image})`;
   });
   reader.readAsDataURL(this.files[0]);
-});
+});*/
 
 //Event listener to check file size
 const imageinputsmall = document.querySelector('#imageinputsmall');
-imageinputsmall.addEventListener("change", function() {
-  if(this.files[0].size > 102400){
+imageinputsmall.addEventListener("change", function () {
+  if (this.files[0].size > 102400) {
     alert("File is too big! Max size is 100kB.");
     this.value = "";
- };
-})
+  }
+  else {
+    const reader = new FileReader();
+    reader.addEventListener("load", () => {
+      const uploaded_image = reader.result;
+      document.querySelector("#display-imagesmall").style.backgroundImage = `url(${uploaded_image})`;
+    });
+    reader.readAsDataURL(this.files[0]);
+  }
+});
 
 const urlPost = 'http://localhost:3000/api/newimage';
 const urlJson = './app-data/library/picture-library.json';
