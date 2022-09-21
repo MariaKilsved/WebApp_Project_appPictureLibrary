@@ -16,10 +16,10 @@ input {
 .flexbox {
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
+    flex-wrap: wrap-reverse;
     justify-content: center;
     align-items: center;
-    padding: auto;
+    margin-top: 20px;
     max-width: 100%;
 }
 
@@ -28,16 +28,12 @@ input {
 }
 
 .image-title {
-    margin-top: 75px;
     font-weight: bold;
     text-align: center;
 }
 
 /* Edit button */
 .material-symbols-outlined {
-  margin-left: 10px;
-  margin-top: 67px;
-  height: 30px;
   color: black;
   background-color: lightgray;
   border-radius: 15%;
@@ -50,7 +46,7 @@ input {
 
 /* Image */
 .main-image {
-    margin-top: 50px;
+    margin-top: 10px;
     margin-bottom: 10px;
     width: 50%;
     height: auto;
@@ -72,13 +68,17 @@ input {
 }
 
 @media only screen and (max-width: 950px) {
+    .image-description {
+        max-width: 95%;
+        font-size: 15px;
+    }
     .comment-box {
         padding-top: 100px;
+        max-width: 95%;
     }
     .main-image {
         min-width: 80%;
     }
-
 }
 
 /* Comment box */

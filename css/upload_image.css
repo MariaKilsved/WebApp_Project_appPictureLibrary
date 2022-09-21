@@ -48,17 +48,16 @@ input {
     border-radius: 6px;
 }
 
-/*Layout*/
-.flex-container {
-
-    display: flex;
-    width: 100%;
-    justify-content: center;
-    flex-direction: column;
-    justify-content: space-around;
-
-
-}
+     /*Layout*/
+     .flex-container {
+        margin-top: 30px;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        justify-content: space-around;
+        
+       
+    }
 
 .newImage {
     display: flex;
