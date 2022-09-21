@@ -105,6 +105,17 @@ input {
 }
 
 @media (min-width: 675px) {
+    #display-image,
+    #display-imagesmall {
+        width: 400px;
+        height: 200px;
+        background-position: center;
+        background-size: cover;
+        margin: 10px 10px;
+    }
+}
+
+@media (min-width: 845px) {
 
     .previewClass {
         align-items: center;
