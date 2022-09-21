@@ -58,7 +58,7 @@ image_input.addEventListener("change", function () {
 const imageinputsmall = document.querySelector('#imageinputsmall');
 imageinputsmall.addEventListener("change", function() {
   if(this.files[0].size > 102400){
-    alert("File is too big!");
+    alert("File is too big! Max size is 100kB.");
     this.value = "";
  };
 })
