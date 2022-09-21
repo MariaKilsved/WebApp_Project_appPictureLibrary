@@ -55,15 +55,18 @@ app.post('/api/newimage', (req, res) => {
     const imageDesc = fields['description'];
     const imgPath = fields['albumSelect'].replace(/\s+/g, '-').toLowerCase();
     const fileName = files.imageinput.originalFilename;
-    const fileNameSmall = (files.imageinputsmall)? files.imageinputsmall.originalFilename : files.imageinput.originalFilename;
+    let fileNameSmallTemp = files.imageinputsmall.originalFilename;
+    const fileNameSmall = (fileNameSmallTemp === '')? fileName : fileNameSmallTemp;
 
     //Relocate images to correct location
     if (fileIsValidImage(files.imageinput)) {
       fileRelocate(files.imageinput, 'pictures/' + imgPath);
     }
 
-    if (fileIsValidImage(files.imageinputsmall)) {
-      fileRelocate(files.imageinputsmall, 'pictures/' + imgPath);
+    if(files.imageinputsmall) {
+      if (fileIsValidImage(files.imageinputsmall)) {
+        fileRelocate(files.imageinputsmall, 'pictures/' + imgPath);
+      }
     }
 
     //update the json file
