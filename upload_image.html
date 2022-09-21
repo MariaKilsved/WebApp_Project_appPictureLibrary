@@ -68,11 +68,11 @@
 
       <div class="uploadImageInput d-flex flex-column text-center">
         <label for="imageinput">Upload picture</label>
-        <input type="file" required id="imageinput" name="imageinput" class="colorChange">  
+        <input type="file" required id="imageinput" name="imageinput" class="colorChange">
       </div>
       <div class="uploadImageInput d-flex flex-column text-center">
         <label for="imageinputsmall">Upload picture in low resolution</label>
-        <input type="file" required id="imageinputsmall" name="imageinputsmall" class="colorChange">  
+        <input type="file" required id="imageinputsmall" name="imageinputsmall" class="colorChange">
       </div>
 
       <div class="flex-Row">
@@ -81,9 +81,16 @@
       </div>
     </form>
     <!-- <div class="flexbox-image"> -->
-    <h3 class="flexbox-image">Image preview</h3>
-    <div id="display-image"></div>
-    <div id="display-imagesmall"></div>
+    <div class="previewClass">
+      <div class="text-center">
+        <h3>Large image preview</h3>
+        <div id="display-image" class="child"></div>
+      </div>
+      <div class="text-center">
+        <h3>Small image preview</h3>
+        <div id="display-imagesmall" class="child"></div>
+      </div>
+    </div>
 
     </div>
 </body>
