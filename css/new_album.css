@@ -51,6 +51,7 @@ h2:hover{
     color: white;
     margin: 8px 6px;
     border-radius: 6px;
+    display: block;
     
     }
         /*Layout*/
@@ -83,3 +84,8 @@ h2:hover{
     flex-direction: row;
 }
 
+@media (min-width: 512px) {
+    .colorChange {
+        display: inline-block;
+    }
+}
