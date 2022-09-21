@@ -16,10 +16,10 @@ input {
 .flexbox {
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
+    flex-wrap: wrap-reverse;
     justify-content: center;
     align-items: center;
-    padding: auto;
+    margin: auto;
     max-width: 100%;
 }
 
@@ -73,11 +73,12 @@ input {
 
 @media only screen and (max-width: 950px) {
     .image-description {
-        width: 100%;
+        max-width: 95%;
         font-size: 15px;
     }
     .comment-box {
         padding-top: 100px;
+        width: 100%;
     }
     .main-image {
         min-width: 80%;
