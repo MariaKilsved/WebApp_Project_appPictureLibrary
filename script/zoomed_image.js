@@ -21,7 +21,6 @@ window.addEventListener('DOMContentLoaded', async () => {
             let pictureQuery = window.location.search.substring(1);
             if (picture.id === pictureQuery) {
                 renderImage(
-                    `${album.path}/${picture.imgLoRes}`,
                     `${album.path}/${picture.imgHiRes}`,
                     picture.title
                 );
@@ -62,10 +61,10 @@ const commentForm = document.getElementById('commentForm');
 commentForm.addEventListener('submit', postNewDescription);
 
 // Render the image
-function renderImage(loResSrc, hiResSrc, title) {
+function renderImage(hiResSrc, title) {
     const img = document.createElement('img');
     img.className = `main-image`;
-    img.srcset = `${loResSrc}, ${hiResSrc} 2x`;    //Actual width is unknown
+    img.src = hiResSrc;
     img.alt = title;
 
     const imageContainer = document.getElementById('imageContainer');
