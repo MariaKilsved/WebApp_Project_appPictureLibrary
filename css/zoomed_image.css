@@ -83,6 +83,9 @@ input {
     .main-image {
         min-width: 80%;
     }
+    .material-symbols-outlined {
+        margin-top: 30px;
+    }
 
 }
 
