@@ -54,16 +54,6 @@ image_input.addEventListener("change", function () {
   reader.readAsDataURL(this.files[0]);
 });
 
-/*const imageinputsmallPreview = document.querySelector("#imageinputsmall");
-imageinputsmallPreview.addEventListener("change", function () {
-  const reader = new FileReader();
-  reader.addEventListener("load", () => {
-    const uploaded_image = reader.result;
-    document.querySelector("#display-imagesmall").style.backgroundImage = `url(${uploaded_image})`;
-  });
-  reader.readAsDataURL(this.files[0]);
-});*/
-
 //Event listener to check file size
 const imageinputsmall = document.querySelector('#imageinputsmall');
 imageinputsmall.addEventListener("change", function () {
@@ -114,82 +104,4 @@ uploadImageForm.addEventListener('submit', async event => {
   catch {
     alert("Transmission error");
   }
-})
-
-
-/*
-titleInput = document.getElementById('title').value;
-descriptionInput = document.getElementById('description').value;
-fileName = image_input.value.split("\\").pop();
-albumInput = document.getElementById('albumSelect');
-option = albumInput.options[albumInput.selectedIndex];
-albumId = option.value;
-albumTitle = option.text;
-selectedAlbumPath = `./library/pictures/${albumTitle}`.replace(/\s+/g, '-').toLowerCase();
-
-for (const album in obj) {
-  if (Object.hasOwnProperty.call(obj, album)) {
-    const element = obj[album];
-    for (const item of element) {
-      if (item.id === albumId) {
-        console.log(item.id);
-        pic = item.pictures;
-      }
-    }
-    console.log(element);
-  }
-};
 });
-
-let obj = await lib.pictureLibraryBrowser.fetchJSON(libraryJSON);
-let pic;
-const fileToSave = document.getElementById('image-input').files[0];
-const imageUploadForm = document.getElementById('uploadImageForm');
-
-imageUploadForm.addEventListener('submit', async event => {
-event.preventDefault();
-
-let formData = new FormData();
-formData.append("fileToSave",fileToSave);
-await fetch (`${selectedAlbumPath}`, {
-  method: "POST",
-  body: formData
-});
-
-pic.push( { 
-  id: proto.uniqueId(),
-  title: `${titleInput}`,
-  comment:`${descriptionInput}`,
-  imgLoRes:`${fileName}`,
-  imgHiRes: `${fileName}`
-});
-
-//  lib.pictureLibraryBrowser.postJSON(obj, libraryJSON);
-
-try {
-  const url = 'http://localhost:3000/api/upload';
-
-  const response = await fetch(url, {
-      method: 'POST',
-      headers: { 'content-type': 'application/json' },
-      body: JSON.stringify(obj)
-
-    });
-  if(response.ok) {
-      console.log("Request successful");
-      const responeText = await response.text();
-      console.log(responeText);
-  }
-  else {
-      //typcially you would log an error instead
-      console.log(`Failed to recieved data from server: ${res.status}`);
-      alert(`Failed to recieved data from server: ${res.status}`);
-  }
-}
-catch(error) {
-  console.log("Failed to receive data from server");
-  //console.log(`Failed to recieve data from server: ${err.message}`);
-  alert("Failed to recieve data from server");
-  //alert(`Failed to recieve data from server: ${err.message}`);
-}
-});*/
