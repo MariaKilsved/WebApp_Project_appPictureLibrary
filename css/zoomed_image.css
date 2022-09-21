@@ -72,6 +72,10 @@ input {
 }
 
 @media only screen and (max-width: 950px) {
+    .image-description {
+        width: 100%;
+        font-size: 15px;
+    }
     .comment-box {
         padding-top: 100px;
     }
