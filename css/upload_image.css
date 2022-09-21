@@ -44,7 +44,7 @@ input {
 
      /*Layout*/
      .flex-container {
-           
+        margin: 30px;   
         display: flex;
         width: 100%;
         justify-content: center;
