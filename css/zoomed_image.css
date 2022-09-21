@@ -78,7 +78,7 @@ input {
     }
     .comment-box {
         padding-top: 100px;
-        width: 100%;
+        max-width: 95%;
     }
     .main-image {
         min-width: 80%;
