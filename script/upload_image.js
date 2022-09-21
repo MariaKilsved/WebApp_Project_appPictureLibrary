@@ -54,6 +54,16 @@ image_input.addEventListener("change", function () {
   reader.readAsDataURL(this.files[0]);
 });
 
+const imageinputsmallPreview = document.querySelector("#imageinputsmall");
+imageinputsmallPreview.addEventListener("change", function () {
+  const reader = new FileReader();
+  reader.addEventListener("load", () => {
+    const uploaded_image = reader.result;
+    document.querySelector("#display-imagesmall").style.backgroundImage = `url(${uploaded_image})`;
+  });
+  reader.readAsDataURL(this.files[0]);
+});
+
 //Event listener to check file size
 const imageinputsmall = document.querySelector('#imageinputsmall');
 imageinputsmall.addEventListener("change", function() {
