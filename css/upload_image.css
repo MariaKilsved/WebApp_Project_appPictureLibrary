@@ -2,11 +2,6 @@
 body{ 
     background-color: lightgrey;
 }
-/* To hide the text from label */
-label{
-    background-color: lightgray;
-    color: lightgray;
-}
 
 
  h2:hover{
@@ -43,7 +38,7 @@ input {
 .colorChange {
     background-color: black;
     color: white;
-    margin: 8px 6px;
+    margin: 0 6px 8px;
     border-radius: 6px;
 }
 
@@ -108,4 +103,8 @@ input {
     background-size: cover;
     margin: auto;
   }
+}
+
+.uploadImageInput {
+    margin: 8px 6px;
 }

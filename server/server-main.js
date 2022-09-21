@@ -35,7 +35,7 @@ app.post('/api/upload', (req, res) => {
 
 app.post('/api/newimage', (req, res) => {
   const form = formidable();
-  console.log('hello');
+
   form.parse(req, (err, fields, files) => {
     if (err) {
       return;
@@ -45,17 +45,25 @@ app.post('/api/newimage', (req, res) => {
     let obj = {};
     let pic;
 
+    //Obtain already existing json
     if (fileExists(appJson)) {
       obj = readJSON(appJson);
     }
 
+    //Fields and files
     const imageTitle = fields['title'];
     const imageDesc = fields['description'];
     const imgPath = fields['albumSelect'].replace(/\s+/g, '-').toLowerCase();
     const fileName = files.imageinput.originalFilename;
+    const fileNameSmall = (files.imageinputsmall)? files.imageinputsmall.originalFilename : files.imageinput.originalFilename;
 
+    //Relocate images to correct location
     if (fileIsValidImage(files.imageinput)) {
       fileRelocate(files.imageinput, 'pictures/' + imgPath);
+    }
+
+    if (fileIsValidImage(files.imageinputsmall)) {
+      fileRelocate(files.imageinputsmall, 'pictures/' + imgPath);
     }
 
     //update the json file
@@ -64,7 +72,7 @@ app.post('/api/newimage', (req, res) => {
         const element = obj[album];
         for (const item of element) {
           if (item.title.replace(/\s+/g, '-').toLowerCase() === imgPath.replace(/\s+/g, '-').toLowerCase()) {
-            console.log(item.id);
+            //console.log(item.id);
             pic = item.pictures;
           }
         }
@@ -75,10 +83,11 @@ app.post('/api/newimage', (req, res) => {
       id: uniqueId(),
       title: imageTitle,
       comment: imageDesc,
-      imgLoRes: fileName,
+      imgLoRes: fileNameSmall,
       imgHiRes: fileName
     });
 
+    //Respond
     writeJSON(appJson, obj);
     res.sendStatus(200);
   });

@@ -54,6 +54,15 @@ image_input.addEventListener("change", function () {
   reader.readAsDataURL(this.files[0]);
 });
 
+//Event listener to check file size
+const imageinputsmall = document.querySelector('#imageinputsmall');
+imageinputsmall.addEventListener("change", function() {
+  if(this.files[0].size > 102400){
+    alert("File is too big!");
+    this.value = "";
+ };
+})
+
 const urlPost = 'http://localhost:3000/api/newimage';
 const urlJson = './app-data/library/picture-library.json';
 const uploadImageForm = document.getElementById('uploadImageForm');
