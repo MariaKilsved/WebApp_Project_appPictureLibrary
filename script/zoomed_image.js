@@ -179,6 +179,8 @@ async function renameImageTitle(e) {
 
     //Use function
     //await lib.pictureLibraryBrowser.postJSON(library, libraryJSON);
+
+    location.reload();
 }
 
 async function postNewDescription(e) {
@@ -199,4 +201,6 @@ async function postNewDescription(e) {
 
     //Use function
     await lib.pictureLibraryBrowser.postJSON(library, libraryJSON);
+
+    location.reload();
 }
