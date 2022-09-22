@@ -6,7 +6,7 @@ body{
 /* To hide the text from label */
 label{
     
-    color: lightgrey;
+    display: none;
 }
 
 h2:hover{
